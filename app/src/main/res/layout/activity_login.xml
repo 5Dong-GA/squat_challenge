@@ -11,27 +11,142 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:weightSum="1">
+        android:weightSum="1"
+        android:background="#575757">
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight=".15"/>
-        <TextView
-            android:id="@+id/title"
-            android:layout_weight=".45"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:text="SQUAT\nSQUAD"
-            android:textSize="90sp"
-            android:gravity="center"
-            android:fontFamily="@font/kanit_black"
-            android:textColor="#FFE607"/>
+            android:orientation="horizontal"
+            android:weightSum="1"
+            android:layout_weight=".25">
+            <ImageView
+                android:id="@+id/splash_img2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".43"/>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight=".45"
+                android:weightSum="1">
+                <TextView
+                    android:id="@+id/splash_txt1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight=".33"
+                    android:text="집 에 서"
+                    android:gravity="end"
+                    android:textColor="#FFE607"
+                    android:textSize="40sp"
+                    android:fontFamily="@font/blackhansans_regular"/>
+                <TextView
+                    android:id="@+id/splash_txt2"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight=".33"
+                    android:text="간 편 하 고"
+                    android:gravity="end"
+                    android:textColor="#FFE607"
+                    android:textSize="40sp"
+                    android:fontFamily="@font/blackhansans_regular"/>
+                <TextView
+                    android:id="@+id/splash_txt3"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight=".33"
+                    android:text="재 미 있 게"
+                    android:gravity="end"
+                    android:textColor="#FFE607"
+                    android:textSize="40sp"
+                    android:fontFamily="@font/blackhansans_regular"/>
+            </LinearLayout>
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".12"
+                tools:ignore="NestedWeights" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_weight=".13"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:weightSum="1">
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".12"/>
+            <TextView
+                android:id="@+id/splash_title1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".15"
+                android:textColor="#FFE607"
+                android:textSize="60sp"
+                android:text="R"
+                android:gravity="end"
+                android:fontFamily="@font/kanit_black"/>
+            <TextView
+                android:id="@+id/splash_title2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".45"
+                android:textColor="#FFE607"
+                android:textSize="60sp"
+                android:text="OOM"
+                android:gravity="start"
+                android:fontFamily="@font/kanit_black"/>
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".28"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_weight=".13"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:weightSum="1">
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".12"/>
+            <TextView
+                android:id="@+id/splash_title3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".15"
+                android:textColor="#FFE607"
+                android:textSize="60sp"
+                android:text="T"
+                android:gravity="end"
+                android:fontFamily="@font/kanit_black"/>
+            <TextView
+                android:id="@+id/splash_title4"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".65"
+                android:textColor="#FFE607"
+                android:textSize="60sp"
+                android:text="RAINING"
+                android:gravity="start"
+                android:fontFamily="@font/kanit_black"/>
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".28"/>
+        </LinearLayout>
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight=".05"/>
         <com.google.android.gms.common.SignInButton
-            android:layout_weight=".05"
+            android:layout_weight=".01"
             android:id="@+id/btn_google"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
@@ -41,7 +156,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight=".3"/>
+            android:layout_weight=".28"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

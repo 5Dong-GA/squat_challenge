@@ -13,6 +13,8 @@ import android.os.ResultReceiver;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -45,7 +47,7 @@ import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
-    private TextView title;
+    TextView splash_txt1,splash_txt2,splash_txt3,splash_title1,splash_title2,splash_title3,splash_title4;
     private SignInButton btn_google;        //구글 로그인 버튼
     private FirebaseAuth auth;              //파이어베이스 인증 객체
     private GoogleApiClient googleApiClient;    //구글 api 클라이언트 객체
@@ -61,6 +63,31 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         //title.setAutoSizeTextTypeUniformWithConfiguration(80,160,1,TypedValue.COMPLEX_UNIT_DIP);
+
+        splash_txt1 = findViewById(R.id.splash_txt1);
+        splash_txt2 = findViewById(R.id.splash_txt2);
+        splash_txt3 = findViewById(R.id.splash_txt3);
+        splash_title1 = findViewById(R.id.splash_title1);
+        splash_title2 = findViewById(R.id.splash_title2);
+        splash_title3 = findViewById(R.id.splash_title3);
+        splash_title4 = findViewById(R.id.splash_title4);
+        btn_google = findViewById(R.id.btn_google);
+
+        Animation txtAnim1 = AnimationUtils.loadAnimation(this, R.anim.anim_splash_txt1);
+        Animation txtAnim2 = AnimationUtils.loadAnimation(this, R.anim.anim_splash_txt2);
+        Animation txtAnim3 = AnimationUtils.loadAnimation(this, R.anim.anim_splash_txt3);
+        Animation titleAnim1 = AnimationUtils.loadAnimation(this, R.anim.alpha_none);
+        Animation titleAnim2 = AnimationUtils.loadAnimation(this, R.anim.anim_splash_title1);
+
+        splash_txt1.setAnimation(txtAnim1);
+        splash_txt2.setAnimation(txtAnim2);
+        splash_txt3.setAnimation(txtAnim3);
+        btn_google.setAnimation(titleAnim1);
+        splash_title1.setAnimation(titleAnim1);
+        splash_title3.setAnimation(titleAnim1);
+        splash_title2.setAnimation(titleAnim2);
+        splash_title4.setAnimation(titleAnim2);
+
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
@@ -73,7 +100,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
         auth = FirebaseAuth.getInstance();      //파이어베이스 인증객체 초기화
 
-        btn_google=findViewById(R.id.btn_google);
         btn_google.setOnClickListener(new View.OnClickListener() {      //구글 로그인 버튼을 클릭했을때 이곳을 수행
             @Override
             public void onClick(View view) {

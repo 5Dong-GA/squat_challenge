@@ -1,7 +1,7 @@
 <resources>
-        <string name="app_name">squat challenge</string>
-        <string name="title_activity_friend_list">ScrollingActivity</string>
-        <string name="large_text">
+    <string name="app_name">squat challenge</string>
+    <string name="title_activity_friend_list">ScrollingActivity</string>
+    <string name="large_text">
         "All material objects, regardless of size, have a resting elevation, or default elevation "
         "that does not change. If an object changes elevation, it should return to its resting "
         "elevation as soon as possible.\n\n"
@@ -38,19 +38,19 @@
         "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
         "when a user tries to pick up one of cards.\n\n"
     </string>
-        <string name="action_settings">Settings</string>
-        <string name="title_activity_scrolling">ScrollingActivity</string>
-        <string name="title_activity_mypage">Mypage</string>
-        <!-- Strings used for fragments for navigation -->
-        <string name="first_fragment_label">First Fragment</string>
-        <string name="second_fragment_label">Second Fragment</string>
-        <string name="next">Next</string>
-        <string name="previous">Previous</string>
-        <string name="setting">설 정</string>
-        <string name="hello_first_fragment">Hello first fragment</string>
-        <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-        <string name="customer_center">고 객 센 터</string>
-        <string name="achievement">업 적</string>
-        <string name="record">기 록</string>
-        <string name="cooperate">COOPERATE</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_scrolling">ScrollingActivity</string>
+    <string name="title_activity_mypage">Mypage</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="setting">설 정</string>
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="customer_center">고 객 센 터</string>
+    <string name="achievement">업 적</string>
+    <string name="record">기 록</string>
+    <string name="cooperate">COOPERATE</string>
 </resources>

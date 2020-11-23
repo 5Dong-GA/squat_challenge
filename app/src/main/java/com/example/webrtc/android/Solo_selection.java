@@ -18,7 +18,7 @@ public class Solo_selection extends AppCompatActivity {
 
         LinearLayout to_speed = findViewById(R.id.to_speed);
         to_speed.setOnClickListener(view -> {
-            Intent intent13 = new Intent(getApplicationContext(), solo_speed_play.class);
+            Intent intent13 = new Intent(getApplicationContext(), ReadytoPlay.class);
             intent13.putExtra("Email" , email);       //우선 id만 넘겨준다 가정
             startActivity(intent13);
         });
