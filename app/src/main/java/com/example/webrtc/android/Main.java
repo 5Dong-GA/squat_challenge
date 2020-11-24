@@ -15,10 +15,17 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.HashMap;
 import java.util.Map;
 
 public class Main extends AppCompatActivity {
+
+    //접속중 표시를 위해 DB접근
+    DatabaseReference DB;
+    private String email;
 
     private LinearLayout my_page;
     private TextView quest_name1;
@@ -34,6 +41,14 @@ public class Main extends AppCompatActivity {
     //카메라 권한을 위해
     private int RESULT_PERMISSIONS = 100;
 
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        DB = FirebaseDatabase.getInstance().getReference("users");         //완탐을 위해
+        DB.child(email).child("state").setValue("off");
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +63,7 @@ public class Main extends AppCompatActivity {
 
         final String nickName = intent.getStringExtra("name");        //loginactivity로부터 닉네임 전달받음
         final String photoUrl = intent.getStringExtra("photoUrl");        //loginactivity로부터 프로필사진 Url전달받음
-        final String email = intent.getStringExtra("Email");        //구글이메일
+        email = intent.getStringExtra("Email");        //구글이메일
 
         LinearLayout Quest = findViewById(R.id.Quest);
         LinearLayout questlist = findViewById(R.id.questlist);

@@ -123,6 +123,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
                 while (child.hasNext()) {
                     //존재할때
+                    DB.child(userEmail).child("state").setValue("on");
                     if (child.next().getKey().equals(userEmail)) {
                         exist = true;
                         break;

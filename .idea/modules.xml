@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/StudioProject2.iml" filepath="$PROJECT_DIR$/.idea/modules/StudioProject2.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/StudioProject2.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/StudioProject2.app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/webrtc/StudioProject2.webrtc.iml" filepath="$PROJECT_DIR$/.idea/modules/webrtc/StudioProject2.webrtc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/squat_challenge.iml" filepath="$PROJECT_DIR$/.idea/modules/squat_challenge.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/squat_challenge.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/squat_challenge.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/webrtc/squat_challenge.webrtc.iml" filepath="$PROJECT_DIR$/.idea/modules/webrtc/squat_challenge.webrtc.iml" />
     </modules>
   </component>
 </project>

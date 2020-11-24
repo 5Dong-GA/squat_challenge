@@ -134,7 +134,7 @@ public class Friend_list extends AppCompatActivity {
                 Iterator<DataSnapshot> child = snapshot.getChildren().iterator();
                 int friends = (int)snapshot.getChildrenCount();
 
-                // 친구 이미 있나 검사
+                // 이미친구인지 검사
                 while (child.hasNext()) {
                     if (child.next().getValue().equals(fname)) {
                         exist = true;

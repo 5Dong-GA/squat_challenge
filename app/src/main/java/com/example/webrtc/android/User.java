@@ -5,6 +5,7 @@ public class User {
     public long speed_time;
     public long total_count;
     public String team_name;
+    public String state;
     public User(){}
 
     public User(String username){
@@ -12,5 +13,6 @@ public class User {
         this.speed_time = 180000;
         this.total_count = 0;
         this.team_name = "";
+        this.state = "on";
     }
 }
