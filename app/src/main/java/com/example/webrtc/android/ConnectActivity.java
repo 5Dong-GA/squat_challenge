@@ -211,6 +211,7 @@ public class ConnectActivity extends AppCompatActivity {
 
   @Override
   protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    super.onActivityResult(requestCode, resultCode, data);
     if (requestCode == CONNECTION_REQUEST && commandLineRun) {
       Log.d(TAG, "Return: " + resultCode);
       setResult(resultCode);
@@ -242,6 +243,7 @@ public class ConnectActivity extends AppCompatActivity {
    * Get a value from the shared preference or from the intent, if it does not
    * exist the default is used.
    */
+
   private boolean sharedPrefGetBoolean(
       int attributeId, String intentName, int defaultId, boolean useFromIntent) {
     boolean defaultValue = Boolean.parseBoolean(getString(defaultId));

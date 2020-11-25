@@ -42,7 +42,7 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
         //mCamera = solo_speed_play.getCamera();
 
         if(mCamera == null){
-            mCamera = Camera.open();
+            mCamera = Camera.open(-1);
         }
         listPreviewSizes = mCamera.getParameters().getSupportedPreviewSizes();
     }

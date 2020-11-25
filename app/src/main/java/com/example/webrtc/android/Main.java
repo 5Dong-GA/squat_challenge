@@ -214,6 +214,7 @@ public class Main extends AppCompatActivity {
 
         return true;
     }
+
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            String permissions[], int[] grantResults) {

@@ -191,6 +191,8 @@ public class solo_speed_play extends AppCompatActivity implements Camera.Preview
         }
 
     }
+
+
     //total_count 와 speed_time update
     public void updateRecord() {
         //String[] s = {"/speed_time", "/total_count"};
@@ -327,10 +329,9 @@ public class solo_speed_play extends AppCompatActivity implements Camera.Preview
     private void setInit() {
         getInstance = this;
 
-
-
+        int cameraID = Camera.CameraInfo.CAMERA_FACING_FRONT;
         // 카메라 객체를 R.layout.activity_main의 레이아웃에 선언한 SurfaceView에서 먼저 정의해야 함으로 setContentView 보다 먼저 정의한다.
-        mCamera = Camera.open();
+        mCamera = Camera.open(cameraID);
 
         setContentView(R.layout.activity_solo_speed_play);
 

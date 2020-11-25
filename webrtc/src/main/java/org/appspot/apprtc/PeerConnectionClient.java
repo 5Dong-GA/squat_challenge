@@ -583,6 +583,7 @@ public class PeerConnectionClient {
         .createAudioDeviceModule();
   }
 
+  //!!!! 여기 느낌 있음
   private void createMediaConstraintsInternal() {
     // Create video constraints if video call is enabled.
     if (isVideoCallEnabled()) {
@@ -668,9 +669,11 @@ public class PeerConnectionClient {
 
     List<String> mediaStreamLabels = Collections.singletonList("ARDAMS");
     if (isVideoCallEnabled()) {
+
       peerConnection.addTrack(createVideoTrack(videoCapturer), mediaStreamLabels);
       // We can add the renderers right away because we don't need to wait for an
       // answer to get the remote track.
+      // 얘도 아님 for문
       remoteVideoTrack = getRemoteVideoTrack();
       remoteVideoTrack.setEnabled(renderVideo);
       for (VideoSink remoteSink : remoteSinks) {
@@ -832,6 +835,7 @@ public class PeerConnectionClient {
     });
   }
 
+  // 얘도 아님
   public void setVideoEnabled(final boolean enable) {
     executor.execute(() -> {
       renderVideo = enable;
@@ -951,6 +955,7 @@ public class PeerConnectionClient {
         return;
       }
 
+      //얘도 아님
       for (RtpParameters.Encoding encoding : parameters.encodings) {
         // Null value means no limit.
         encoding.maxBitrateBps = maxBitrateKbps == null ? null : maxBitrateKbps * BPS_IN_KBPS;
@@ -980,6 +985,7 @@ public class PeerConnectionClient {
     return localAudioTrack;
   }
 
+  // 얘는 아님 frame 보내는 게
   @Nullable
   private VideoTrack createVideoTrack(VideoCapturer capturer) {
     surfaceTextureHelper =
@@ -994,6 +1000,7 @@ public class PeerConnectionClient {
     return localVideoTrack;
   }
 
+  // 얘도 아님
   private void findVideoSender() {
     for (RtpSender sender : peerConnection.getSenders()) {
       if (sender.track() != null) {
@@ -1006,6 +1013,7 @@ public class PeerConnectionClient {
     }
   }
 
+  // 얘도 아님
   // Returns the remote VideoTrack, assuming there is only one.
   private @Nullable VideoTrack getRemoteVideoTrack() {
     for (RtpTransceiver transceiver : peerConnection.getTransceivers()) {
