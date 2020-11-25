@@ -10,15 +10,24 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:weightSum="1"
-        android:background="#575757">
-        <ImageView
+        android:background="@drawable/main_base">
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:orientation="vertical"
             android:layout_weight=".25"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:background="@drawable/name">
-        </ImageView>
+            android:weightSum="1">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".5"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".5"/>
+        </LinearLayout>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -63,26 +72,8 @@
                         android:weightSum="1"
                         android:padding="10dp"
                         android:layout_gravity="center"
-                        android:background="@drawable/buttonshape3">
-                        <ImageView
-                            android:layout_width="0dp"
-                            android:layout_weight=".15"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginLeft="10dp"
-                            app:srcCompat="@drawable/me1_1" />
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight=".8"
-                            android:layout_gravity="center"
-                            android:fadeScrollbars="true"
-                            android:textStyle="bold"
-                            android:gravity="center_vertical|center_horizontal"
-                            android:text="마 이 페 이 지"
-                            android:background="#575757"
-                            android:textColor="#FFE607"
-                            android:textSize="22sp" />
+                        android:background="@drawable/buttonshape8">
+
                     </LinearLayout>
                     <ImageView
                         android:layout_width="0dp"
@@ -111,26 +102,8 @@
                         android:weightSum="1"
                         android:padding="10dp"
                         android:layout_gravity="center"
-                        android:background="@drawable/buttonshape3">
-                        <ImageView
-                            android:layout_width="0dp"
-                            android:layout_weight=".15"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginLeft="10dp"
-                            app:srcCompat="@drawable/quest2_1" />
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight=".8"
-                            android:layout_gravity="center"
-                            android:fadeScrollbars="true"
-                            android:textStyle="bold"
-                            android:gravity="center_vertical|center_horizontal"
-                            android:text="퀘  스  트"
-                            android:background="#575757"
-                            android:textColor="#FFE607"
-                            android:textSize="22sp" />
+                        android:background="@drawable/buttonshape8">
+
                     </LinearLayout>
                     <ImageView
                         android:layout_width="0dp"
@@ -159,26 +132,8 @@
                         android:weightSum="1"
                         android:padding="10dp"
                         android:layout_gravity="center"
-                        android:background="@drawable/buttonshape3">
-                        <ImageView
-                            android:layout_width="0dp"
-                            android:layout_weight=".15"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginLeft="10dp"
-                            app:srcCompat="@drawable/friends1_1" />
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight=".8"
-                            android:layout_gravity="center"
-                            android:fadeScrollbars="true"
-                            android:textStyle="bold"
-                            android:gravity="center_vertical|center_horizontal"
-                            android:text="친 구 목 록"
-                            android:background="#575757"
-                            android:textColor="#FFE607"
-                            android:textSize="22sp" />
+                        android:background="@drawable/buttonshape8">
+
                     </LinearLayout>
                     <ImageView
                         android:layout_width="0dp"
@@ -212,23 +167,8 @@
                 android:paddingBottom="10dp"
                 android:paddingRight="7dp"
                 android:orientation="vertical"
-                android:background="@drawable/buttonshape3">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:layout_marginTop="5dp"
-                    android:text="S O L O"
-                    android:fontFamily="@font/kanit_black"
-                    android:textColor="#FFE607"
-                    android:gravity="center_horizontal"
-                    android:textSize="26sp"/>
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_gravity="center_horizontal|center_vertical"
-                    android:background="@drawable/squat1_2"/>
+                android:background="@drawable/buttonshape8">
+
             </LinearLayout>
             <ImageView
                 android:layout_width="0dp"
@@ -243,24 +183,8 @@
                 android:paddingRight="7dp"
                 android:layout_weight=".45"
                 android:orientation="vertical"
-                android:background="@drawable/buttonshape3">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="5dp"
-                    android:text="@string/cooperate"
-                    android:fontFamily="@font/kanit_black"
-                    android:textColor="#FFE607"
-                    android:gravity="center"
-                    android:textSize="26sp"/>
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="5dp"
-                    android:layout_gravity="center_horizontal|center_vertical"
-                    android:background="@drawable/squat2_2" />
+                android:background="@drawable/buttonshape8">
+
             </LinearLayout>
             <ImageView
                 android:layout_width="0dp"

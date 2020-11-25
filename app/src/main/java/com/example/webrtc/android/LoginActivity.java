@@ -62,15 +62,21 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     protected void onCreate(Bundle savedInstanceState) {        //앱이 실행될때 처음 수행
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        //title.setAutoSizeTextTypeUniformWithConfiguration(80,160,1,TypedValue.COMPLEX_UNIT_DIP);
 
         splash_txt1 = findViewById(R.id.splash_txt1);
+        TextViewCompat.setAutoSizeTextTypeWithDefaults(splash_txt1, TextViewCompat.AUTO_SIZE_TEXT_TYPE_UNIFORM);
         splash_txt2 = findViewById(R.id.splash_txt2);
+        TextViewCompat.setAutoSizeTextTypeWithDefaults(splash_txt2, TextViewCompat.AUTO_SIZE_TEXT_TYPE_UNIFORM);
         splash_txt3 = findViewById(R.id.splash_txt3);
+        TextViewCompat.setAutoSizeTextTypeWithDefaults(splash_txt3, TextViewCompat.AUTO_SIZE_TEXT_TYPE_UNIFORM);
         splash_title1 = findViewById(R.id.splash_title1);
+        TextViewCompat.setAutoSizeTextTypeWithDefaults(splash_title1, TextViewCompat.AUTO_SIZE_TEXT_TYPE_UNIFORM);
         splash_title2 = findViewById(R.id.splash_title2);
+        TextViewCompat.setAutoSizeTextTypeWithDefaults(splash_title2, TextViewCompat.AUTO_SIZE_TEXT_TYPE_UNIFORM);
         splash_title3 = findViewById(R.id.splash_title3);
+        TextViewCompat.setAutoSizeTextTypeWithDefaults(splash_title3, TextViewCompat.AUTO_SIZE_TEXT_TYPE_UNIFORM);
         splash_title4 = findViewById(R.id.splash_title4);
+        TextViewCompat.setAutoSizeTextTypeWithDefaults(splash_title4, TextViewCompat.AUTO_SIZE_TEXT_TYPE_UNIFORM);
         btn_google = findViewById(R.id.btn_google);
 
         Animation txtAnim1 = AnimationUtils.loadAnimation(this, R.anim.anim_splash_txt1);

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#575757"
+    android:background="#FFFFFF"
     tools:context=".Splash">
 
     <LinearLayout
@@ -15,7 +15,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight=".24"/>
+            android:layout_weight=".2"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -31,13 +31,17 @@
                 android:transitionName="trans_img2"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:src="@drawable/house1"
+                android:src="@drawable/house2"
                 android:layout_weight=".34"/>
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight=".33"/>
         </LinearLayout>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".03"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -62,9 +66,13 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:padding="10dp"
-                android:src="@drawable/stage_img9"
+                android:src="@drawable/splash4"
                 android:layout_weight=".33"/>
         </LinearLayout>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".03"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -79,7 +87,7 @@
                 android:id="@+id/splash_img5"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:src="@drawable/splash5"
+                android:src="@drawable/splash3"
                 android:layout_weight=".34"/>
             <ImageView
                 android:layout_width="0dp"
@@ -89,6 +97,6 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight=".16"/>
+            android:layout_weight=".14"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
