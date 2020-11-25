@@ -18,6 +18,10 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.AssetFileDescriptor;
+import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.Matrix;
 import android.media.projection.MediaProjection;
 import android.media.projection.MediaProjectionManager;
 import android.net.Uri;
@@ -30,12 +34,19 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.WindowManager.LayoutParams;
+import android.widget.ImageView;
 import android.widget.Toast;
+
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.lang.RuntimeException;
+import java.nio.ByteBuffer;
+import java.nio.MappedByteBuffer;
+import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+
 import javax.annotation.Nullable;
 
 import org.appspot.apprtc.AppRTCAudioManager;
@@ -51,6 +62,7 @@ import org.appspot.apprtc.PeerConnectionClient.DataChannelParameters;
 import org.appspot.apprtc.PeerConnectionClient.PeerConnectionParameters;
 import org.appspot.apprtc.UnhandledExceptionHandler;
 import org.appspot.apprtc.WebSocketRTCClient;
+import org.tensorflow.lite.Interpreter;
 import org.webrtc.Camera1Enumerator;
 import org.webrtc.Camera2Enumerator;
 import org.webrtc.CameraEnumerator;
@@ -69,13 +81,15 @@ import org.webrtc.VideoFileRenderer;
 import org.webrtc.VideoFrame;
 import org.webrtc.VideoSink;
 
+import static java.lang.Thread.sleep;
+
 /**
  * Activity for peer connection call setup, call waiting
  * and call view.
  */
 public class CallActivity extends Activity implements AppRTCClient.SignalingEvents,
-                                                      PeerConnectionClient.PeerConnectionEvents,
-                                                      CallFragment.OnCallEvents {
+        PeerConnectionClient.PeerConnectionEvents,
+        CallFragment.OnCallEvents {
   private static final String TAG = "CallRTCClient";
 
   public static final String EXTRA_ROOMID = "org.appspot.apprtc.ROOMID";
@@ -88,7 +102,7 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
   public static final String EXTRA_VIDEO_HEIGHT = "org.appspot.apprtc.VIDEO_HEIGHT";
   public static final String EXTRA_VIDEO_FPS = "org.appspot.apprtc.VIDEO_FPS";
   public static final String EXTRA_VIDEO_CAPTUREQUALITYSLIDER_ENABLED =
-      "org.appsopt.apprtc.VIDEO_CAPTUREQUALITYSLIDER";
+          "org.appsopt.apprtc.VIDEO_CAPTUREQUALITYSLIDER";
   public static final String EXTRA_VIDEO_BITRATE = "org.appspot.apprtc.VIDEO_BITRATE";
   public static final String EXTRA_VIDEOCODEC = "org.appspot.apprtc.VIDEOCODEC";
   public static final String EXTRA_HWCODEC_ENABLED = "org.appspot.apprtc.HWCODEC";
@@ -97,29 +111,29 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
   public static final String EXTRA_AUDIO_BITRATE = "org.appspot.apprtc.AUDIO_BITRATE";
   public static final String EXTRA_AUDIOCODEC = "org.appspot.apprtc.AUDIOCODEC";
   public static final String EXTRA_NOAUDIOPROCESSING_ENABLED =
-      "org.appspot.apprtc.NOAUDIOPROCESSING";
+          "org.appspot.apprtc.NOAUDIOPROCESSING";
   public static final String EXTRA_AECDUMP_ENABLED = "org.appspot.apprtc.AECDUMP";
   public static final String EXTRA_SAVE_INPUT_AUDIO_TO_FILE_ENABLED =
-      "org.appspot.apprtc.SAVE_INPUT_AUDIO_TO_FILE";
+          "org.appspot.apprtc.SAVE_INPUT_AUDIO_TO_FILE";
   public static final String EXTRA_OPENSLES_ENABLED = "org.appspot.apprtc.OPENSLES";
   public static final String EXTRA_DISABLE_BUILT_IN_AEC = "org.appspot.apprtc.DISABLE_BUILT_IN_AEC";
   public static final String EXTRA_DISABLE_BUILT_IN_AGC = "org.appspot.apprtc.DISABLE_BUILT_IN_AGC";
   public static final String EXTRA_DISABLE_BUILT_IN_NS = "org.appspot.apprtc.DISABLE_BUILT_IN_NS";
   public static final String EXTRA_DISABLE_WEBRTC_AGC_AND_HPF =
-      "org.appspot.apprtc.DISABLE_WEBRTC_GAIN_CONTROL";
+          "org.appspot.apprtc.DISABLE_WEBRTC_GAIN_CONTROL";
   public static final String EXTRA_DISPLAY_HUD = "org.appspot.apprtc.DISPLAY_HUD";
   public static final String EXTRA_TRACING = "org.appspot.apprtc.TRACING";
   public static final String EXTRA_CMDLINE = "org.appspot.apprtc.CMDLINE";
   public static final String EXTRA_RUNTIME = "org.appspot.apprtc.RUNTIME";
   public static final String EXTRA_VIDEO_FILE_AS_CAMERA = "org.appspot.apprtc.VIDEO_FILE_AS_CAMERA";
   public static final String EXTRA_SAVE_REMOTE_VIDEO_TO_FILE =
-      "org.appspot.apprtc.SAVE_REMOTE_VIDEO_TO_FILE";
+          "org.appspot.apprtc.SAVE_REMOTE_VIDEO_TO_FILE";
   public static final String EXTRA_SAVE_REMOTE_VIDEO_TO_FILE_WIDTH =
-      "org.appspot.apprtc.SAVE_REMOTE_VIDEO_TO_FILE_WIDTH";
+          "org.appspot.apprtc.SAVE_REMOTE_VIDEO_TO_FILE_WIDTH";
   public static final String EXTRA_SAVE_REMOTE_VIDEO_TO_FILE_HEIGHT =
-      "org.appspot.apprtc.SAVE_REMOTE_VIDEO_TO_FILE_HEIGHT";
+          "org.appspot.apprtc.SAVE_REMOTE_VIDEO_TO_FILE_HEIGHT";
   public static final String EXTRA_USE_VALUES_FROM_INTENT =
-      "org.appspot.apprtc.USE_VALUES_FROM_INTENT";
+          "org.appspot.apprtc.USE_VALUES_FROM_INTENT";
   public static final String EXTRA_DATA_CHANNEL_ENABLED = "org.appspot.apprtc.DATA_CHANNEL_ENABLED";
   public static final String EXTRA_ORDERED = "org.appspot.apprtc.ORDERED";
   public static final String EXTRA_MAX_RETRANSMITS_MS = "org.appspot.apprtc.MAX_RETRANSMITS_MS";
@@ -129,34 +143,131 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
   public static final String EXTRA_ID = "org.appspot.apprtc.ID";
   public static final String EXTRA_ENABLE_RTCEVENTLOG = "org.appspot.apprtc.ENABLE_RTCEVENTLOG";
   public static final String EXTRA_USE_LEGACY_AUDIO_DEVICE =
-      "org.appspot.apprtc.USE_LEGACY_AUDIO_DEVICE";
+          "org.appspot.apprtc.USE_LEGACY_AUDIO_DEVICE";
 
   private static final int CAPTURE_PERMISSION_REQUEST_CODE = 1;
 
   // List of mandatory application permissions.
   private static final String[] MANDATORY_PERMISSIONS = {"android.permission.MODIFY_AUDIO_SETTINGS",
-      "android.permission.RECORD_AUDIO", "android.permission.INTERNET"};
+          "android.permission.RECORD_AUDIO", "android.permission.INTERNET"};
 
   // Peer connection statistics callback period in ms.
   private static final int STAT_CALLBACK_PERIOD = 1000;
+  //-------------------------------
 
-  private static class ProxyVideoSink implements VideoSink {
+
+  Interpreter tflite;
+
+  //모델 로드 국룰
+  private Interpreter getTfliteInterpreter(String modelPath) {
+    try {
+      return new Interpreter(loadModelFile(CallActivity.this, modelPath));
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return null;
+  }
+
+  private MappedByteBuffer loadModelFile(Activity activity, String modelPath) throws IOException {
+    AssetFileDescriptor fileDescriptor = activity.getAssets().openFd(modelPath);
+    FileInputStream inputStream = new FileInputStream(fileDescriptor.getFileDescriptor());
+    FileChannel fileChannel = inputStream.getChannel();
+    long startOffset = fileDescriptor.getStartOffset();
+    long declaredLength = fileDescriptor.getDeclaredLength();
+    return fileChannel.map(FileChannel.MapMode.READ_ONLY, startOffset, declaredLength);
+  }
+
+  public void setview(Bitmap bitmap){
+
+  }
+  private class ProxyVideoSink implements VideoSink {
     private VideoSink target;
+    private ImageView iv_my;
 
+    // 여기다!!!!!!!!!!!
     @Override
-    synchronized public void onFrame(VideoFrame frame) {
+    public void onFrame(VideoFrame frame) {
       if (target == null) {
         Logging.d(TAG, "Dropping frame in proxy because target is null.");
         return;
       }
 
       target.onFrame(frame);
-    }
 
+      frame.getBuffer().toI420().getDataY();
+      ByteBuffer y = frame.getBuffer().toI420().getDataY();
+      ByteBuffer u = frame.getBuffer().toI420().getDataY();
+      ByteBuffer v = frame.getBuffer().toI420().getDataY();
+      int w = frame.getBuffer().getWidth();
+      int h = frame.getBuffer().getHeight();
+
+      final int[] rgb = convert(y, u, v, w, h);
+
+      Bitmap bmp = Bitmap.createBitmap(rgb, w, h, Bitmap.Config.ARGB_8888);
+      bmp = Bitmap.createScaledBitmap(bmp, 224, 224, false);
+
+      Matrix rotateMatrix = new Matrix();
+      rotateMatrix.postRotate(90);
+
+      bmp = Bitmap.createBitmap(bmp, 0, 0,
+              bmp.getWidth(), bmp.getHeight(), rotateMatrix, false);
+
+      //이거해결해야댐!!!!!!!!!!!!!!!!!!!!!!!!
+      // iv_my.setImageBitmap(frame);
+
+      //모델 적용을 위해
+      float[][][][] inputs = new float[1][224][224][3];       //1 * width * height * RGB
+      float[][] outputs = new float[1][2];
+      for (int x = 0; x < 224; x++) {
+        for (int yy = 0; yy < 224; yy++) {
+          int pixel = bmp.getPixel(x, yy);
+          inputs[0][yy][x][0] = (Color.red(pixel)) / 255.0f;
+          inputs[0][yy][x][1] = (Color.green(pixel)) / 255.0f;
+          inputs[0][yy][x][2] = (Color.blue(pixel)) / 255.0f;
+        }
+      }
+      tflite = getTfliteInterpreter("model.tflite");
+      tflite.run(inputs, outputs);
+
+      if(outputs[0][0] > outputs[0][1]) {
+        System.out.println("UP!!!!!!!!!!!!");
+      }
+      else{
+        System.out.println("DOWN!!!!!!!!!!!!!");
+      }
+    }
     synchronized public void setTarget(VideoSink target) {
       this.target = target;
     }
   }
+
+  //rgb추출
+  public static int[] convert(ByteBuffer y, ByteBuffer u, ByteBuffer v, int width, int height) {
+    final int frameSize = width * height;
+    int rgb[] = new int[width * height];
+    for (int j = 0, yp = 0; j < frameSize; j++, yp++) {
+      int y_value = y.get(j);
+      int u_value = u.get(j);
+      int v_value = v.get(j);
+
+      int y1192 = 1192 * y_value;
+      int r = (y1192 + 1634 * v_value);
+      int g = (y1192 - 833 * v_value - 400 * u_value);
+      int b = (y1192 + 2066 * u_value);
+
+      if (r < 0) r = 0;
+      else if (r > 262143) r = 262143;
+      if (g < 0) g = 0;
+      else if (g > 262143) g = 262143;
+      if (b < 0) b = 0;
+      else if (b > 262143) b = 262143;
+
+      rgb[yp] = 0xff000000 | ((r << 6) & 0xff0000) | ((g >> 2) &
+              0xff00) | ((b >> 10) & 0xff);
+    }
+    return rgb;
+  }
+
 
   private final ProxyVideoSink remoteProxyRenderer = new ProxyVideoSink();
   private final ProxyVideoSink localProxyVideoSink = new ProxyVideoSink();
@@ -209,18 +320,19 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
     // adding content.
     requestWindowFeature(Window.FEATURE_NO_TITLE);
     getWindow().addFlags(LayoutParams.FLAG_FULLSCREEN | LayoutParams.FLAG_KEEP_SCREEN_ON
-        | LayoutParams.FLAG_SHOW_WHEN_LOCKED | LayoutParams.FLAG_TURN_SCREEN_ON);
+            | LayoutParams.FLAG_SHOW_WHEN_LOCKED | LayoutParams.FLAG_TURN_SCREEN_ON);
     getWindow().getDecorView().setSystemUiVisibility(getSystemUiVisibility());
     setContentView(R.layout.activity_call);
 
     iceConnected = false;
     signalingParameters = null;
-
     // Create UI controls.
     pipRenderer = findViewById(R.id.pip_video_view);
     fullscreenRenderer = findViewById(R.id.fullscreen_video_view);
     callFragment = new CallFragment();
     hudFragment = new HudFragment();
+
+    tflite = getTfliteInterpreter("model.tflite");
 
     // Show/hide call control fragment on view click.
     View.OnClickListener listener = new View.OnClickListener() {
@@ -255,11 +367,11 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
       int videoOutHeight = intent.getIntExtra(EXTRA_SAVE_REMOTE_VIDEO_TO_FILE_HEIGHT, 0);
       try {
         videoFileRenderer = new VideoFileRenderer(
-            saveRemoteVideoToFile, videoOutWidth, videoOutHeight, eglBase.getEglBaseContext());
+                saveRemoteVideoToFile, videoOutWidth, videoOutHeight, eglBase.getEglBaseContext());
         remoteSinks.add(videoFileRenderer);
       } catch (IOException e) {
         throw new RuntimeException(
-            "Failed to open video file for output: " + saveRemoteVideoToFile, e);
+                "Failed to open video file for output: " + saveRemoteVideoToFile, e);
       }
     }
     fullscreenRenderer.init(eglBase.getEglBaseContext(), null);
@@ -317,27 +429,27 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
     DataChannelParameters dataChannelParameters = null;
     if (intent.getBooleanExtra(EXTRA_DATA_CHANNEL_ENABLED, false)) {
       dataChannelParameters = new DataChannelParameters(intent.getBooleanExtra(EXTRA_ORDERED, true),
-          intent.getIntExtra(EXTRA_MAX_RETRANSMITS_MS, -1),
-          intent.getIntExtra(EXTRA_MAX_RETRANSMITS, -1), intent.getStringExtra(EXTRA_PROTOCOL),
-          intent.getBooleanExtra(EXTRA_NEGOTIATED, false), intent.getIntExtra(EXTRA_ID, -1));
+              intent.getIntExtra(EXTRA_MAX_RETRANSMITS_MS, -1),
+              intent.getIntExtra(EXTRA_MAX_RETRANSMITS, -1), intent.getStringExtra(EXTRA_PROTOCOL),
+              intent.getBooleanExtra(EXTRA_NEGOTIATED, false), intent.getIntExtra(EXTRA_ID, -1));
     }
     peerConnectionParameters =
-        new PeerConnectionParameters(intent.getBooleanExtra(EXTRA_VIDEO_CALL, true), loopback,
-            tracing, videoWidth, videoHeight, intent.getIntExtra(EXTRA_VIDEO_FPS, 0),
-            intent.getIntExtra(EXTRA_VIDEO_BITRATE, 0), intent.getStringExtra(EXTRA_VIDEOCODEC),
-            intent.getBooleanExtra(EXTRA_HWCODEC_ENABLED, true),
-            intent.getBooleanExtra(EXTRA_FLEXFEC_ENABLED, false),
-            intent.getIntExtra(EXTRA_AUDIO_BITRATE, 0), intent.getStringExtra(EXTRA_AUDIOCODEC),
-            intent.getBooleanExtra(EXTRA_NOAUDIOPROCESSING_ENABLED, false),
-            intent.getBooleanExtra(EXTRA_AECDUMP_ENABLED, false),
-            intent.getBooleanExtra(EXTRA_SAVE_INPUT_AUDIO_TO_FILE_ENABLED, false),
-            intent.getBooleanExtra(EXTRA_OPENSLES_ENABLED, false),
-            intent.getBooleanExtra(EXTRA_DISABLE_BUILT_IN_AEC, false),
-            intent.getBooleanExtra(EXTRA_DISABLE_BUILT_IN_AGC, false),
-            intent.getBooleanExtra(EXTRA_DISABLE_BUILT_IN_NS, false),
-            intent.getBooleanExtra(EXTRA_DISABLE_WEBRTC_AGC_AND_HPF, false),
-            intent.getBooleanExtra(EXTRA_ENABLE_RTCEVENTLOG, false),
-            intent.getBooleanExtra(EXTRA_USE_LEGACY_AUDIO_DEVICE, false), dataChannelParameters);
+            new PeerConnectionParameters(intent.getBooleanExtra(EXTRA_VIDEO_CALL, true), loopback,
+                    tracing, videoWidth, videoHeight, intent.getIntExtra(EXTRA_VIDEO_FPS, 0),
+                    intent.getIntExtra(EXTRA_VIDEO_BITRATE, 0), intent.getStringExtra(EXTRA_VIDEOCODEC),
+                    intent.getBooleanExtra(EXTRA_HWCODEC_ENABLED, true),
+                    intent.getBooleanExtra(EXTRA_FLEXFEC_ENABLED, false),
+                    intent.getIntExtra(EXTRA_AUDIO_BITRATE, 0), intent.getStringExtra(EXTRA_AUDIOCODEC),
+                    intent.getBooleanExtra(EXTRA_NOAUDIOPROCESSING_ENABLED, false),
+                    intent.getBooleanExtra(EXTRA_AECDUMP_ENABLED, false),
+                    intent.getBooleanExtra(EXTRA_SAVE_INPUT_AUDIO_TO_FILE_ENABLED, false),
+                    intent.getBooleanExtra(EXTRA_OPENSLES_ENABLED, false),
+                    intent.getBooleanExtra(EXTRA_DISABLE_BUILT_IN_AEC, false),
+                    intent.getBooleanExtra(EXTRA_DISABLE_BUILT_IN_AGC, false),
+                    intent.getBooleanExtra(EXTRA_DISABLE_BUILT_IN_NS, false),
+                    intent.getBooleanExtra(EXTRA_DISABLE_WEBRTC_AGC_AND_HPF, false),
+                    intent.getBooleanExtra(EXTRA_ENABLE_RTCEVENTLOG, false),
+                    intent.getBooleanExtra(EXTRA_USE_LEGACY_AUDIO_DEVICE, false), dataChannelParameters);
     commandLineRun = intent.getBooleanExtra(EXTRA_CMDLINE, false);
     int runTimeMs = intent.getIntExtra(EXTRA_RUNTIME, 0);
 
@@ -354,7 +466,7 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
     // Create connection parameters.
     String urlParameters = intent.getStringExtra(EXTRA_URLPARAMETERS);
     roomConnectionParameters =
-        new RoomConnectionParameters(roomUri.toString(), roomId, loopback, urlParameters);
+            new RoomConnectionParameters(roomUri.toString(), roomId, loopback, urlParameters);
 
     // Create CPU monitor
     if (CpuMonitor.isSupported()) {
@@ -383,7 +495,7 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
 
     // Create peer connection client.
     peerConnectionClient = new PeerConnectionClient(
-        getApplicationContext(), eglBase, peerConnectionParameters, CallActivity.this);
+            getApplicationContext(), eglBase, peerConnectionParameters, CallActivity.this);
     PeerConnectionFactory.Options options = new PeerConnectionFactory.Options();
     if (loopback) {
       options.networkIgnoreMask = 0;
@@ -401,7 +513,7 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
   private DisplayMetrics getDisplayMetrics() {
     DisplayMetrics displayMetrics = new DisplayMetrics();
     WindowManager windowManager =
-        (WindowManager) getApplication().getSystemService(Context.WINDOW_SERVICE);
+            (WindowManager) getApplication().getSystemService(Context.WINDOW_SERVICE);
     windowManager.getDefaultDisplay().getRealMetrics(displayMetrics);
     return displayMetrics;
   }
@@ -418,10 +530,10 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
   @TargetApi(21)
   private void startScreenCapture() {
     MediaProjectionManager mediaProjectionManager =
-        (MediaProjectionManager) getApplication().getSystemService(
-            Context.MEDIA_PROJECTION_SERVICE);
+            (MediaProjectionManager) getApplication().getSystemService(
+                    Context.MEDIA_PROJECTION_SERVICE);
     startActivityForResult(
-        mediaProjectionManager.createScreenCaptureIntent(), CAPTURE_PERMISSION_REQUEST_CODE);
+            mediaProjectionManager.createScreenCaptureIntent(), CAPTURE_PERMISSION_REQUEST_CODE);
   }
 
   @Override
@@ -441,7 +553,8 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
     return getIntent().getBooleanExtra(EXTRA_CAPTURETOTEXTURE_ENABLED, false);
   }
 
-  private @Nullable VideoCapturer createCameraCapturer(CameraEnumerator enumerator) {
+  private @Nullable
+  VideoCapturer createCameraCapturer(CameraEnumerator enumerator) {
     final String[] deviceNames = enumerator.getDeviceNames();
 
     // First, try to find front facing camera
@@ -474,13 +587,14 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
   }
 
   @TargetApi(21)
-  private @Nullable VideoCapturer createScreenCapturer() {
+  private @Nullable
+  VideoCapturer createScreenCapturer() {
     if (mediaProjectionPermissionResultCode != Activity.RESULT_OK) {
       reportError("User didn't give permission to capture the screen.");
       return null;
     }
     return new ScreenCapturerAndroid(
-        mediaProjectionPermissionResultData, new MediaProjection.Callback() {
+            mediaProjectionPermissionResultData, new MediaProjection.Callback() {
       @Override
       public void onStop() {
         reportError("User revoked permission to capture the screen.");
@@ -602,7 +716,7 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
       // devices has changed.
       @Override
       public void onAudioDeviceChanged(
-          AudioDevice audioDevice, Set<AudioDevice> availableAudioDevices) {
+              AudioDevice audioDevice, Set<AudioDevice> availableAudioDevices) {
         onAudioManagerDevicesChanged(audioDevice, availableAudioDevices);
       }
     });
@@ -624,7 +738,7 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
   // This method is called when the audio manager reports audio device change,
   // e.g. from wired headset to speakerphone.
   private void onAudioManagerDevicesChanged(
-      final AudioDevice device, final Set<AudioDevice> availableDevices) {
+          final AudioDevice device, final Set<AudioDevice> availableDevices) {
     Log.d(TAG, "onAudioManagerDevicesChanged: " + availableDevices + ", "
             + "selected: " + device);
     // TODO(henrika): add callback handler.
@@ -673,19 +787,19 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
       disconnect();
     } else {
       new AlertDialog.Builder(this)
-          .setTitle(getText(org.appspot.apprtc.R.string.channel_error_title))
-          .setMessage(errorMessage)
-          .setCancelable(false)
-          .setNeutralButton(org.appspot.apprtc.R.string.ok,
-              new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int id) {
-                  dialog.cancel();
-                  disconnect();
-                }
-              })
-          .create()
-          .show();
+              .setTitle(getText(org.appspot.apprtc.R.string.channel_error_title))
+              .setMessage(errorMessage)
+              .setCancelable(false)
+              .setNeutralButton(org.appspot.apprtc.R.string.ok,
+                      new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int id) {
+                          dialog.cancel();
+                          disconnect();
+                        }
+                      })
+              .create()
+              .show();
     }
   }
 
@@ -711,7 +825,8 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
     });
   }
 
-  private @Nullable VideoCapturer createVideoCapturer() {
+  private @Nullable
+  VideoCapturer createVideoCapturer() {
     final VideoCapturer videoCapturer;
     String videoFileAsCamera = getIntent().getStringExtra(EXTRA_VIDEO_FILE_AS_CAMERA);
     if (videoFileAsCamera != null) {
@@ -764,7 +879,7 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
       videoCapturer = createVideoCapturer();
     }
     peerConnectionClient.createPeerConnection(
-        localProxyVideoSink, remoteSinks, videoCapturer, signalingParameters);
+            localProxyVideoSink, remoteSinks, videoCapturer, signalingParameters);
 
     if (signalingParameters.initiator) {
       logAndToast("Creating OFFER...");
@@ -940,7 +1055,8 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
   }
 
   @Override
-  public void onPeerConnectionClosed() {}
+  public void onPeerConnectionClosed() {
+  }
 
   @Override
   public void onPeerConnectionStatsReady(final StatsReport[] reports) {
