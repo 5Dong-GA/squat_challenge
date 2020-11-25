@@ -19,6 +19,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+//임의로 설정버튼을 눌렀을때 db가 정렬되도록 한다
+
 public class Mypage extends AppCompatActivity {
     private LinearLayout to_setting;
     private ImageView to_cuscen;
@@ -32,6 +34,8 @@ public class Mypage extends AppCompatActivity {
     private TextView tv_myach;
     private ImageView iv_profile;
     DatabaseReference DB;
+
+    //to_setting이 눌리면 ranking창으로 이동!
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,14 +105,15 @@ public class Mypage extends AppCompatActivity {
             rec3.setText(stage);
         });
 
-//        to_setting.findViewById(R.id.to_setting);
-//        to_setting.setOnClickListener(view -> { // 원래 설정으로 이동해야 되는데 지금 친구목록으로 해둠
-//            Intent intent1 = new Intent(getApplicationContext(), Friend_list.class);
-//            startActivity(intent1);
-//            intent1.putExtra("name" , nickName);
-//            intent1.putExtra("photoUrl",photoUrl);
-//            intent1.putExtra("Email",email);
-//        });
+        //설정누르면 랭킹창으로 이동!
+        to_setting = findViewById(R.id.to_setting);
+        to_setting.setOnClickListener(view -> {
+            Intent intent1 = new Intent(getApplicationContext(), Ranking.class);
+            intent1.putExtra("name" , nickName);
+            intent1.putExtra("photoUrl",photoUrl);
+            intent1.putExtra("Email",email);
+            startActivity(intent1);
+        });
 //
 //        to_cuscen.findViewById(R.id.to_cuscen);
 //        to_cuscen.setOnClickListener(view -> { // 원래 고객센터 팝업인데 지금 스테이지로 해둠

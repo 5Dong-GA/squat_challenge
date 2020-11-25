@@ -27,7 +27,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="HardcodedDebugMode">
-        <activity android:name=".ReadytoPlay"></activity>
+        <activity android:name=".Ranking"></activity>
+        <activity android:name=".ReadytoPlay" />
         <activity android:name=".Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -47,10 +48,9 @@
             <!-- </intent-filter> -->
         </activity>
         <activity android:name=".solo_speed_play" />
-        <activity android:name=".Mypage"/>
+        <activity android:name=".Mypage" />
         <activity android:name=".Friend_list" />
-        <activity android:name=".LoginActivity">
-        </activity>
+        <activity android:name=".LoginActivity" />
         <activity
             android:name=".ConnectActivity"
             android:label="@string/app_name"
