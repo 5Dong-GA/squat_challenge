@@ -10,14 +10,6 @@
     android:layout_height="match_parent"
     tools:ignore="MergeRootFrame">
 
-    <TextView
-        android:id="@+id/tv_count"
-        android:layout_width="wrap_content"
-        android:layout_height="620dp"
-        android:text="체크용"
-        android:textColor="#FFFFFF"
-        android:textSize="50sp" />
-
     <org.webrtc.SurfaceViewRenderer
         android:id="@+id/fullscreen_video_view"
         android:layout_width="wrap_content"
