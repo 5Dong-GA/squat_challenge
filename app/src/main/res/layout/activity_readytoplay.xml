@@ -4,32 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ReadytoPlay"
-    android:background="@drawable/layout1">
+    tools:context=".ReadytoPlay">
 
     <com.example.webrtc.android.CameraPreview
-        android:id="@+id/preview2"
+        android:id="@+id/preview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:visibility="visible"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:weightSum="1">
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight=".25"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
             android:layout_weight=".2"
-            android:weightSum="1">
+            android:weightSum="1"
+            android:background="#575757">
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -38,9 +32,9 @@
                 android:id="@+id/count1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:textColor="#575757"
+                android:textColor="#FFFFFF"
                 android:text="5"
-                android:textSize="40sp"
+                android:textSize="50sp"
                 android:gravity="center"
                 android:fontFamily="@font/blackhansans_regular"
                 android:layout_weight=".14"/>
@@ -48,9 +42,9 @@
                 android:id="@+id/count2"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:textColor="#575757"
+                android:textColor="#FFFFFF"
                 android:text="4"
-                android:textSize="40sp"
+                android:textSize="50sp"
                 android:gravity="center"
                 android:fontFamily="@font/blackhansans_regular"
                 android:layout_weight=".14"/>
@@ -58,9 +52,9 @@
                 android:id="@+id/count3"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:textColor="#575757"
+                android:textColor="#FFFFFF"
                 android:text="3"
-                android:textSize="40sp"
+                android:textSize="50sp"
                 android:gravity="center"
                 android:fontFamily="@font/blackhansans_regular"
                 android:layout_weight=".14"/>
@@ -68,9 +62,9 @@
                 android:id="@+id/count4"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:textColor="#575757"
+                android:textColor="#FFFFFF"
                 android:text="2"
-                android:textSize="40sp"
+                android:textSize="50sp"
                 android:gravity="center"
                 android:fontFamily="@font/blackhansans_regular"
                 android:layout_weight=".14"/>
@@ -78,9 +72,9 @@
                 android:id="@+id/count5"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:textColor="#575757"
+                android:textColor="#FFFFFF"
                 android:text="1"
-                android:textSize="40sp"
+                android:textSize="50sp"
                 android:gravity="center"
                 android:fontFamily="@font/blackhansans_regular"
                 android:layout_weight=".14"/>
@@ -89,21 +83,60 @@
                 android:layout_height="match_parent"
                 android:layout_weight=".15"/>
         </LinearLayout>
-        <TextView
-            android:id="@+id/msg"
-            android:layout_weight=".3"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/blackhansans_regular"
-            android:gravity="center"
-            android:layout_gravity="center_horizontal"
-            android:text="중 앙 에\n\n정 확 히\n\n서 주 세 요"
-            android:textColor="#575757"
-            android:textSize="50sp"/>
+            android:orientation="horizontal"
+            android:layout_weight=".2"
+            android:weightSum="1">
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".15"
+                android:background="#575757"/>
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".7"/>
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".15"
+                android:background="#575757"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".5"
+            android:weightSum="1"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".15"
+                android:background="#575757"/>
+            <TextView
+                android:id="@+id/msg"
+                android:layout_weight=".7"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/blackhansans_regular"
+                android:gravity="center"
+                android:layout_gravity="center_horizontal"
+                android:text="중 앙 에\n\n정 확 히\n\n서 주 세 요"
+                android:textColor="#575757"
+                android:textSize="50sp"/>
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".15"
+                android:background="#575757"/>
+        </LinearLayout>
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight=".25"/>
+            android:layout_weight=".1"
+            android:background="#575757"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

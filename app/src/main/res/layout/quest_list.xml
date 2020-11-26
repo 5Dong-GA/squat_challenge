@@ -5,94 +5,134 @@
     <LinearLayout
         android:orientation="vertical"
         android:id="@+id/questlist"
-        android:layout_width="220dp"
-        android:layout_height="215dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginLeft="10dp"
-        android:background="@drawable/buttonshape3">
+        android:background="@drawable/buttonshape8"
+        android:weightSum="1">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".1"/>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight=".2"
             android:orientation="horizontal"
-            android:layout_marginTop="12dp">
+            android:weightSum="1">
             <ImageView
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_marginLeft="15dp"
-                android:background="@drawable/dot1_1"
-                android:layout_gravity="center" />
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".1"/>
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".15"
+                android:padding="5dp"
+                android:background="@drawable/dot2"/>
             <TextView
                 android:id="@+id/quest_name1"
-                android:layout_width="115dp"
-                android:layout_height="55dp"
-                android:textStyle="bold"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".5"
                 android:textSize="22sp"
-                android:textColor="#FFE607"
-                android:gravity="center"
-                android:layout_gravity="center" />
+                android:textColor="#3d65d3"
+                android:fontFamily="@font/blackhansans_regular"
+                android:gravity="center" />
             <ImageView
                 android:id="@+id/reroll1"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="5dp"
-                android:background="@drawable/reroll_1"
-                android:layout_gravity="center" />
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".15"
+                android:background="@drawable/reroll1"/>
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".1"/>
         </LinearLayout>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".1"/>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight=".2"
             android:orientation="horizontal"
-            android:layout_marginTop="15dp">
+            android:weightSum="1">
             <ImageView
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_marginLeft="15dp"
-                android:background="@drawable/dot1_1"
-                android:layout_gravity="center" />
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".1"/>
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".15"
+                android:padding="5dp"
+                android:background="@drawable/dot2"/>
             <TextView
                 android:id="@+id/quest_name2"
-                android:layout_width="115dp"
-                android:layout_height="55dp"
-                android:textStyle="bold"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".5"
                 android:textSize="22sp"
-                android:textColor="#FFE607"
-                android:gravity="center"
-                android:layout_gravity="center" />
+                android:textColor="#3d65d3"
+                android:fontFamily="@font/blackhansans_regular"
+                android:gravity="center" />
             <ImageView
                 android:id="@+id/reroll2"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="5dp"
-                android:background="@drawable/reroll_1"
-                android:layout_gravity="center" />
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".15"
+                android:background="@drawable/reroll1"/>
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".1"/>
         </LinearLayout>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".1"/>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight=".2"
             android:orientation="horizontal"
-            android:layout_marginTop="15dp">
+            android:weightSum="1">
             <ImageView
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_marginLeft="15dp"
-                android:background="@drawable/dot1_1"
-                android:layout_gravity="center" />
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".1"/>
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".15"
+                android:padding="5dp"
+                android:background="@drawable/dot2"/>
             <TextView
                 android:id="@+id/quest_name3"
-                android:layout_width="115dp"
-                android:layout_height="55dp"
-                android:textStyle="bold"
-                android:textColor="#FFE607"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".5"
                 android:textSize="22sp"
-                android:gravity="center"
-                android:layout_gravity="center" />
+                android:textColor="#3d65d3"
+                android:fontFamily="@font/blackhansans_regular"
+                android:gravity="center" />
             <ImageView
                 android:id="@+id/reroll3"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="5dp"
-                android:background="@drawable/reroll_1"
-                android:layout_gravity="center" />
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".15"
+                android:background="@drawable/reroll1"/>
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".1"/>
         </LinearLayout>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".1"/>
     </LinearLayout>
 </LinearLayout>

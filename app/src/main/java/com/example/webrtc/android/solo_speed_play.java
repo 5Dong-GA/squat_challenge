@@ -230,7 +230,7 @@ public class solo_speed_play extends AppCompatActivity implements Camera.Preview
     @Override
     public void onPreviewFrame(byte[] bytes, Camera camera) {
         //결과값 출력을 위해
-        tv_result = findViewById(R.id.tv_count);
+        tv_result = findViewById(R.id.tv_result);
         tv_count = findViewById(R.id.tv_count);
         //게임이 끝나면
         if (game_end) {
