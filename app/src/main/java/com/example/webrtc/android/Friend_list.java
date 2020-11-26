@@ -37,8 +37,6 @@ import java.util.Map;
 
 public class Friend_list extends AppCompatActivity {
 
-    private Button add_friend;
-    private Button add_friend_button;
     private LinearLayout add_friend_chang;
     private LinearLayout friend_linear;
     RecyclerView recyclerView;
@@ -61,10 +59,10 @@ public class Friend_list extends AppCompatActivity {
         Intent intent = getIntent();
         email = intent.getStringExtra("Email");
 
-        add_friend_button = findViewById(R.id.add_friend_button); // 메인의 친구추가 버튼
+        ImageView add_friend_button = findViewById(R.id.add_friend_button); // 메인의 친구추가 버튼
         friend_linear = findViewById(R.id.friend_linear); // 메인의 상단layer
         add_friend_chang = findViewById(R.id.add_friend_chang); // 친구추가 창
-        add_friend = findViewById(R.id.add_friend); // 친구추가 창의 친구추가 버튼
+        ImageView add_friend = findViewById(R.id.add_friend); // 친구추가 창의 친구추가 버튼
         layoutManager = new LinearLayoutManager(this);
         recyclerView = findViewById(R.id.recyclerView); // 아디 연결
         recyclerView.setLayoutManager(layoutManager);
@@ -101,7 +99,6 @@ public class Friend_list extends AppCompatActivity {
 
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) { // 반복문으로 데이터 List를 추출해냄
                     String email = (String) snapshot.getValue();
-                    System.out.println(email+"!!!!!!!!!!!!!");
                     FriendUser FU = new FriendUser(email);
                     friendList.add(FU); // 담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼 준비
                 }
@@ -126,7 +123,6 @@ public class Friend_list extends AppCompatActivity {
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
     }

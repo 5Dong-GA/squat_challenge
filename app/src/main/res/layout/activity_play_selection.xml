@@ -45,8 +45,8 @@
                     android:layout_weight=".3"
                     android:padding="10dp"
                     android:fontFamily="@font/blackhansans_regular"
-                    android:textColor="#3d65d3"
-                    android:background="@drawable/buttonshape8"/>
+                    android:textColor="#0045fc"
+                    android:background="@drawable/buttonshape10"/>
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
@@ -61,24 +61,26 @@
                     android:layout_weight=".3"
                     android:padding="10dp"
                     android:fontFamily="@font/blackhansans_regular"
-                    android:textColor="#3d65d3"
-                    android:background="@drawable/buttonshape8"/>
+                    android:textColor="#00a8f3"
+                    android:background="@drawable/buttonshape11"/>
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight=".025"/>
+
                 <TextView
                     android:id="@+id/to_team"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:text="TEAM\nMODE"
-                    android:textSize="34sp"
-                    android:gravity="center"
                     android:layout_weight=".3"
-                    android:padding="10dp"
+                    android:background="@drawable/buttonshape8"
                     android:fontFamily="@font/blackhansans_regular"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="TEAM\nMODE"
                     android:textColor="#3d65d3"
-                    android:background="@drawable/buttonshape8"/>
+                    android:textSize="34sp" />
+
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="0dp"

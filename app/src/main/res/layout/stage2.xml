@@ -3,13 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".stage2">
+    tools:context=".stage2"
+    android:background="#FFFFFF">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="#FFFFFF"
+        android:padding="20dp"
         android:weightSum="1">
         <LinearLayout
             android:orientation="horizontal"
@@ -48,26 +49,25 @@
                 android:id="@+id/stage2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/dot1_3"
                 android:layout_weight=".25"
                 android:text="6"
                 android:textSize="45sp"
                 android:fontFamily="@font/kanit_black"
                 android:gravity="center"
-                android:textColor="#FFE607"
-                android:layout_marginRight="5dp"
+                android:textColor="#3d65d3"
+                android:background="@drawable/dot2"
                 android:layout_gravity="center"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight=".25"
-                android:layout_marginRight="15dp"
-                android:background="@drawable/buttonshape3"
+                android:background="@drawable/buttonshape8"
                 android:gravity="center"
-                android:padding="5dp"
+                android:padding="10dp"
                 android:text="2분안에\n스쿼트\n50회"
-                android:textColor="#FFE607"
+                android:textColor="#3d65d3"
+                android:fontFamily="@font/blackhansans_regular"
                 android:textSize="22sp"/>
         </LinearLayout>
         <LinearLayout
@@ -97,23 +97,23 @@
                 android:layout_height="wrap_content"
                 android:text="2분안에\n스쿼트\n40회"
                 android:textSize="22sp"
-                android:padding="5dp"
+                android:padding="10dp"
                 android:gravity="center"
-                android:layout_marginLeft="15dp"
-                android:textColor="#FFE607"
+                android:textColor="#3d65d3"
+                android:fontFamily="@font/blackhansans_regular"
                 android:layout_gravity="center"
                 android:background="@drawable/buttonshape8"
                 android:layout_weight=".25"/>
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/dot1_3"
                 android:layout_weight=".25"
                 android:text="5"
                 android:textSize="45sp"
                 android:fontFamily="@font/kanit_black"
                 android:gravity="center"
-                android:textColor="#FFE607"
+                android:textColor="#3d65d3"
+                android:background="@drawable/dot2"
                 android:layout_marginLeft="5dp"
                 android:layout_gravity="center"/>
             <ImageView
@@ -157,13 +157,13 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/dot1_3"
+                android:textColor="#3d65d3"
+                android:background="@drawable/dot2"
                 android:layout_weight=".25"
                 android:text="4"
                 android:textSize="45sp"
                 android:fontFamily="@font/kanit_black"
                 android:gravity="center"
-                android:textColor="#FFE607"
                 android:layout_marginRight="5dp"
                 android:layout_gravity="center"/>
             <TextView
@@ -172,12 +172,12 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight=".25"
-                android:layout_marginRight="15dp"
-                android:background="@drawable/buttonshape3"
+                android:background="@drawable/buttonshape8"
                 android:gravity="center"
-                android:padding="5dp"
+                android:padding="10dp"
                 android:text="1분안에\n스쿼트\n20회"
-                android:textColor="#FFE607"
+                android:textColor="#3d65d3"
+                android:fontFamily="@font/blackhansans_regular"
                 android:textSize="22sp" />
         </LinearLayout>
         <LinearLayout

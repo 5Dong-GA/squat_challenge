@@ -31,7 +31,6 @@ public class ReadytoPlay extends AppCompatActivity {
     private static Camera mCamera;
     private int RESULT_PERMISSIONS = 100;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

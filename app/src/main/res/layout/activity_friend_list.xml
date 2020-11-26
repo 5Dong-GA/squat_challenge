@@ -17,8 +17,7 @@
             android:id="@+id/app_bar"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:background="#FFFFFF"
-            android:layout_weight=".22"
+            android:layout_weight=".2"
             android:fitsSystemWindows="true"
             android:theme="@style/AppTheme.AppBarOverlay">
 
@@ -29,19 +28,17 @@
                 android:fitsSystemWindows="true"
                 app:contentScrim="?attr/colorPrimary"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
-                app:toolbarId="@+id/toolbar"
-                android:background="#FFE607">
+                app:toolbarId="@+id/toolbar">
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
-
                     <LinearLayout
                         android:id="@+id/add_friend_chang"
                         android:layout_width="wrap_content"
                         android:layout_height="80dp"
                         android:visibility="invisible"
                         android:layout_gravity="center_vertical"
-                        android:background="@drawable/buttonshape4"
+                        android:background="@drawable/buttonshape8"
                         android:padding="10dp"
                         android:weightSum="1">
                         <ImageView
@@ -54,7 +51,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
                             android:layout_weight=".55"
-                            android:background="#FFE607"
+                            android:background="#FFFFFF"
                             android:gravity="center_horizontal|center_vertical"
                             android:hint="아이디를 입력해주세요"
                             android:inputType="text"
@@ -64,21 +61,17 @@
                         <ImageView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight=".05" />
-                        <Button
+                            android:layout_weight=".1" />
+                        <ImageView
                             android:id="@+id/add_friend"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginLeft="5dp"
-                            android:layout_weight=".25"
-                            android:background="@drawable/buttonshape4"
-                            android:gravity="center"
-                            android:text="추가"
-                            android:textColor="#575757"
-                            android:textSize="18sp"
-                            android:textStyle="bold" />
-
+                            android:layout_gravity="center"
+                            android:layout_weight=".2"
+                            android:src="@drawable/plus2"
+                            android:padding="5dp"
+                            android:background="@drawable/buttonshape9"
+                            android:gravity="center"/>
                         <ImageView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -89,70 +82,59 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
-                        android:background="#FFE607"
+                        android:background="#3d65d3"
                         android:weightSum="1">
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
-                            android:layout_weight=".27"/>
+                            android:layout_weight=".2"/>
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
-                            android:layout_weight=".28"
+                            android:layout_weight=".5"
                             android:orientation="horizontal"
                             android:weightSum="1">
                             <ImageView
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:layout_weight=".08"/>
+                                android:layout_weight=".05"/>
                             <ImageView
                                 android:id="@+id/iv_profile_f"
                                 android:layout_width="0dp"
-                                android:layout_weight=".12"
+                                android:layout_weight=".2"
                                 android:layout_height="match_parent"
-                                android:layout_marginLeft="16dp"
-                                android:layout_gravity="center_vertical"
-                                android:background="#FFFFFF"
-                                app:layout_constraintLeft_toLeftOf="parent"
-                                app:layout_constraintRight_toRightOf="@+id/tv_name"
-                                app:srcCompat="@drawable/friends1_2" />
+                                app:srcCompat="@drawable/friends1" />
                             <TextView
                                 android:id="@+id/friends_num"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:layout_weight=".5"
-                                android:layout_marginLeft="10dp"
+                                android:layout_weight=".48"
                                 android:gravity="center_horizontal|center_vertical"
                                 android:layout_gravity="center_vertical"
-                                android:text=" 친 구( 0 / 0)"
-                                android:textColor="#575757"
-                                android:textSize="26sp"
-                                android:textStyle="bold"
+                                android:text=" 친 구( 0 / 0 )"
+                                android:textColor="#FFFFFF"
+                                android:textSize="32sp"
+                                android:fontFamily="@font/blackhansans_regular"
                                 app:layout_constraintLeft_toRightOf="@+id/iv_profile"
                                 app:layout_constraintRight_toRightOf="@+id/add_friend" />
-                            <Button
+                            <ImageView
                                 android:id="@+id/add_friend_button"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:layout_weight=".2"
-                                android:layout_marginLeft="10dp"
-                                android:gravity="center_horizontal|center_vertical"
-                                android:layout_gravity="center_vertical"
-                                android:textStyle="bold"
-                                android:text="친구추가"
-                                android:textColor="#575757"
-                                android:textSize="16sp"
-                                app:layout_constraintLeft_toRightOf="@+id/tv_name"
-                                android:background="@drawable/buttonshape4"/>
+                                android:layout_weight=".22"
+                                android:gravity="center"
+                                android:src="@drawable/plus1"
+                                android:padding="10dp"
+                                android:background="@drawable/buttonshape8"/>
                             <ImageView
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
-                                android:layout_weight=".1"/>
+                                android:layout_weight=".05"/>
                         </LinearLayout>
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
-                            android:layout_weight=".55"/>
+                            android:layout_weight=".3"/>
                     </LinearLayout>
                 </FrameLayout>
             </com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -162,7 +144,7 @@
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight=".7">
+            android:layout_weight=".8">
 
 
         </androidx.recyclerview.widget.RecyclerView>

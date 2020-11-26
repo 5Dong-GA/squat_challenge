@@ -49,7 +49,7 @@ public class Friend_CustomAdapter extends RecyclerView.Adapter<Friend_CustomAdap
     public class CustomViewHolder extends RecyclerView.ViewHolder {
         ImageView friend_img;
         TextView friend_id;
-        Button delete_friend;
+        ImageView delete_friend;
 
         public CustomViewHolder(@NonNull View itemView) {
             super(itemView);
