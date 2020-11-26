@@ -28,6 +28,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
@@ -35,8 +36,18 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.WindowManager.LayoutParams;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
+import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.lang.RuntimeException;
@@ -157,6 +168,26 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
 
 
   Interpreter tflite;
+  private TextView tv_result;
+  FirebaseStorage storage = FirebaseStorage.getInstance();
+  StorageReference storageRef = storage.getReference();
+  StorageReference childRef;
+
+  //handler (카운터)
+  Handler handler = new Handler() {
+    @Override
+    public void handleMessage(@NonNull Message msg) {
+      tv_result = findViewById(R.id.tv_result);
+      if(msg.what == 0){
+        tv_result.setText("UP");
+      }
+      else{
+        tv_result.setText("DOWN");
+      }
+      //handler.sendEmptyMessage(0);
+
+    }
+  };
 
   //모델 로드 국룰
   private Interpreter getTfliteInterpreter(String modelPath) {
@@ -177,12 +208,8 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
     return fileChannel.map(FileChannel.MapMode.READ_ONLY, startOffset, declaredLength);
   }
 
-  public void setview(Bitmap bitmap){
-
-  }
   private class ProxyVideoSink implements VideoSink {
     private VideoSink target;
-    private ImageView iv_my;
 
     // 여기다!!!!!!!!!!!
     @Override
@@ -198,22 +225,38 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
       ByteBuffer y = frame.getBuffer().toI420().getDataY();
       ByteBuffer u = frame.getBuffer().toI420().getDataY();
       ByteBuffer v = frame.getBuffer().toI420().getDataY();
+
+
       int w = frame.getBuffer().getWidth();
       int h = frame.getBuffer().getHeight();
 
       final int[] rgb = convert(y, u, v, w, h);
 
       Bitmap bmp = Bitmap.createBitmap(rgb, w, h, Bitmap.Config.ARGB_8888);
-      bmp = Bitmap.createScaledBitmap(bmp, 224, 224, false);
+      //bmp = Bitmap.createScaledBitmap(bmp, 224, 224, false);
 
       Matrix rotateMatrix = new Matrix();
-      rotateMatrix.postRotate(90);
+      rotateMatrix.postRotate(270);
 
       bmp = Bitmap.createBitmap(bmp, 0, 0,
               bmp.getWidth(), bmp.getHeight(), rotateMatrix, false);
 
-      //이거해결해야댐!!!!!!!!!!!!!!!!!!!!!!!!
-      // iv_my.setImageBitmap(frame);
+      //저장해보자
+      ByteArrayOutputStream baos = new ByteArrayOutputStream();
+      bmp.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+      byte[] data = baos.toByteArray();
+      childRef = storageRef.child("ex.jpg");
+      UploadTask uploadTask = childRef.putBytes(data);
+      uploadTask.addOnFailureListener(new OnFailureListener() {
+        @Override
+        public void onFailure(@NonNull Exception exception) {
+        }
+      }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+        @Override
+        //저장된 frame++ , index++
+        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+        }
+      });
 
       //모델 적용을 위해
       float[][][][] inputs = new float[1][224][224][3];       //1 * width * height * RGB
@@ -226,14 +269,16 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
           inputs[0][yy][x][2] = (Color.blue(pixel)) / 255.0f;
         }
       }
+
+
       tflite = getTfliteInterpreter("model.tflite");
       tflite.run(inputs, outputs);
 
       if(outputs[0][0] > outputs[0][1]) {
-        System.out.println("UP!!!!!!!!!!!!");
+        handler.sendEmptyMessage(0);
       }
       else{
-        System.out.println("DOWN!!!!!!!!!!!!!");
+        handler.sendEmptyMessage(1);
       }
     }
     synchronized public void setTarget(VideoSink target) {
@@ -264,6 +309,9 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
 
       rgb[yp] = 0xff000000 | ((r << 6) & 0xff0000) | ((g >> 2) &
               0xff00) | ((b >> 10) & 0xff);
+
+//      rgb[yp] = ((r << 14) & 0xff000000) | ((g << 6) & 0xff0000) | ((b >> 2) | 0xff00);
+
     }
     return rgb;
   }
