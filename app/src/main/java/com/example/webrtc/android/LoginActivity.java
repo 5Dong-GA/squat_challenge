@@ -47,7 +47,7 @@ import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
-    TextView splash_txt1,splash_txt2,splash_txt3,splash_title1,splash_title2,splash_title3,splash_title4;
+    TextView splash_txt1,splash_txt2,splash_txt3,splash_title1,splash_title2,splash_title3,splash_title4,splash_title5,splash_title6;
     private SignInButton btn_google;        //구글 로그인 버튼
     private FirebaseAuth auth;              //파이어베이스 인증 객체
     private GoogleApiClient googleApiClient;    //구글 api 클라이언트 객체
@@ -63,7 +63,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        splash_txt1 = findViewById(R.id.splash_txt1);
+        splash_txt1 = findViewById(R.id.splash_txt1); // 글씨 크기 조정
         TextViewCompat.setAutoSizeTextTypeWithDefaults(splash_txt1, TextViewCompat.AUTO_SIZE_TEXT_TYPE_UNIFORM);
         splash_txt2 = findViewById(R.id.splash_txt2);
         TextViewCompat.setAutoSizeTextTypeWithDefaults(splash_txt2, TextViewCompat.AUTO_SIZE_TEXT_TYPE_UNIFORM);
@@ -77,6 +77,10 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         TextViewCompat.setAutoSizeTextTypeWithDefaults(splash_title3, TextViewCompat.AUTO_SIZE_TEXT_TYPE_UNIFORM);
         splash_title4 = findViewById(R.id.splash_title4);
         TextViewCompat.setAutoSizeTextTypeWithDefaults(splash_title4, TextViewCompat.AUTO_SIZE_TEXT_TYPE_UNIFORM);
+        splash_title5 = findViewById(R.id.splash_title5);
+        TextViewCompat.setAutoSizeTextTypeWithDefaults(splash_title5, TextViewCompat.AUTO_SIZE_TEXT_TYPE_UNIFORM);
+        splash_title6 = findViewById(R.id.splash_title6);
+        TextViewCompat.setAutoSizeTextTypeWithDefaults(splash_title6, TextViewCompat.AUTO_SIZE_TEXT_TYPE_UNIFORM);
         btn_google = findViewById(R.id.btn_google);
 
         Animation txtAnim1 = AnimationUtils.loadAnimation(this, R.anim.anim_splash_txt1);
@@ -91,8 +95,10 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         btn_google.setAnimation(titleAnim1);
         splash_title1.setAnimation(titleAnim1);
         splash_title3.setAnimation(titleAnim1);
+        splash_title5.setAnimation(titleAnim1);
         splash_title2.setAnimation(titleAnim2);
         splash_title4.setAnimation(titleAnim2);
+        splash_title6.setAnimation(titleAnim2);
 
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
