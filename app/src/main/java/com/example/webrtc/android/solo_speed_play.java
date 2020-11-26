@@ -20,7 +20,6 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Message;
 import android.os.SystemClock;
-import android.preference.PreferenceManager;
 import android.view.SurfaceHolder;
 import android.view.Window;
 import android.view.WindowManager;
@@ -40,7 +39,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
-import java.util.Iterator;
 
 public class solo_speed_play extends AppCompatActivity implements Camera.PreviewCallback {
 
@@ -189,7 +187,6 @@ public class solo_speed_play extends AppCompatActivity implements Camera.Preview
             arr[1] = arr[2];
             arr[2] = -1;
         }
-
     }
 
 
@@ -233,7 +230,7 @@ public class solo_speed_play extends AppCompatActivity implements Camera.Preview
     @Override
     public void onPreviewFrame(byte[] bytes, Camera camera) {
         //결과값 출력을 위해
-        tv_result = findViewById(R.id.tv_result);
+        tv_result = findViewById(R.id.tv_count);
         tv_count = findViewById(R.id.tv_count);
         //게임이 끝나면
         if (game_end) {

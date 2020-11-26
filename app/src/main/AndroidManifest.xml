@@ -36,7 +36,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Solo_selection" />
+        <activity android:name=".Play_selection" />
         <activity android:name=".stage1" />
         <activity android:name=".stage2" />
         <activity android:name=".stage3" />
