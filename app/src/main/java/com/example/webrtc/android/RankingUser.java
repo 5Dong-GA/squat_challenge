@@ -4,13 +4,15 @@ public class RankingUser {
     String email;
     long total_count;
     long speed_time;
+    int rank;
 
     RankingUser(){}
 
-    RankingUser(String email , long total_count , long speed_time){
+    RankingUser(String email , long total_count , long speed_time, int rank){
         this.email = email;
         this.total_count= total_count;
         this.speed_time = speed_time;
+        this.rank = rank;
     }
 
     public String getEmail() {
@@ -35,6 +37,14 @@ public class RankingUser {
 
     public void setSpeed_time(long speed_time) {
         this.speed_time = speed_time;
+    }
+
+    public long getRank() {
+        return rank;
+    }
+
+    public void setRank(int rank) {
+        this.rank = rank;
     }
 
 }

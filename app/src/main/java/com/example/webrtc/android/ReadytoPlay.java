@@ -1,15 +1,22 @@
 package com.example.webrtc.android;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.hardware.Camera;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.SurfaceHolder;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,12 +29,16 @@ public class ReadytoPlay extends AppCompatActivity {
     private SurfaceHolder holder;
     private static Button camera_preview_button;
     private static Camera mCamera;
+    private int RESULT_PERMISSIONS = 100;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_readytoplay);
+        //setContentView(R.layout.activity_readytoplay);
+
+        // 안드로이드 6.0 이상 버전에서는 CAMERA 권한 허가를 요청한다.
+        requestPermissionCamera();
 
         TextView count1, count2, count3, count4, count5;
 
@@ -75,5 +86,44 @@ public class ReadytoPlay extends AppCompatActivity {
         holder = surfaceView.getHolder();
         holder.addCallback(surfaceView);
         holder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
+    }
+    //허가
+    private boolean requestPermissionCamera() {
+        int sdkVersion = Build.VERSION.SDK_INT;
+        if (sdkVersion >= Build.VERSION_CODES.M) {
+
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+
+                ActivityCompat.requestPermissions(ReadytoPlay.this,
+                        new String[]{Manifest.permission.CAMERA},
+                        RESULT_PERMISSIONS);
+
+            } else {
+                setInit();
+            }
+        } else {  // version 6 이하일때
+            setInit();
+            return true;
+        }
+
+        return true;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+
+        if (RESULT_PERMISSIONS == requestCode) {
+
+            if (grantResults.length > 0
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // 권한 허가시
+                setInit();
+            } else {
+                // 권한 거부시
+            }
+            return;
+        }
+
     }
 }
