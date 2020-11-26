@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:fadingEdge="none"
     android:layerType="none"
-    android:background="#575757"
+    android:background="#FFFFFF"
     tools:context=".Mypage">
 
     <LinearLayout
@@ -21,7 +21,7 @@
             android:layout_weight=".18"
             android:weightSum="1"
             android:orientation="horizontal"
-            android:background="#FFE607"
+            android:background="#3d65d3"
             android:paddingBottom="10dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -35,12 +35,10 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:padding="5dp"
-                android:background="@drawable/buttonshape4"
                 android:layout_gravity="center_vertical"
                 app:layout_constraintEnd_toStartOf="@+id/tv_name"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_launcher_foreground" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -51,8 +49,7 @@
                 android:weightSum="1"
                 android:paddingRight="15dp"
                 android:paddingLeft="15dp"
-                android:layout_marginLeft="15dp"
-                android:background="@drawable/buttonshape4">
+                android:layout_marginLeft="15dp">
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
@@ -66,8 +63,8 @@
                     android:layout_weight=".4"
                     android:layout_gravity="center"
                     android:text="매 일 노 력 하 는 자"
-                    android:textColor="#575757"
-                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:fontFamily="@font/blackhansans_regular"
                     android:textSize="24sp" />
                 <TextView
                     android:id="@+id/tv_name"
@@ -78,8 +75,8 @@
                     android:gravity="center"
                     android:layout_gravity="center"
                     android:text="I D"
-                    android:textColor="#575757"
-                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:fontFamily="@font/blackhansans_regular"
                     android:textSize="30sp" />
                 <ImageView
                     android:layout_width="match_parent"

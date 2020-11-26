@@ -3,6 +3,7 @@ package com.example.webrtc.android;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.widget.TextViewCompat;
 
 import android.Manifest;
 import android.content.Intent;
@@ -10,7 +11,6 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -27,7 +27,8 @@ public class Main extends AppCompatActivity {
     DatabaseReference DB;
     private String email;
 
-    private LinearLayout my_page;
+    TextView myach,myname,mystage,myrank,stage,rank;
+
     private TextView quest_name1;
     private TextView quest_name2;
     private TextView quest_name3;
@@ -56,6 +57,19 @@ public class Main extends AppCompatActivity {
         Main.quest q = new Main.quest("",0,true);
         q.setTodayQuest();
 
+        myach = findViewById(R.id.myach);
+        TextViewCompat.setAutoSizeTextTypeWithDefaults(myach, TextViewCompat.AUTO_SIZE_TEXT_TYPE_UNIFORM);
+        myname = findViewById(R.id.myname);
+        TextViewCompat.setAutoSizeTextTypeWithDefaults(myname, TextViewCompat.AUTO_SIZE_TEXT_TYPE_UNIFORM);
+        myrank = findViewById(R.id.myrank);
+        TextViewCompat.setAutoSizeTextTypeWithDefaults(myrank, TextViewCompat.AUTO_SIZE_TEXT_TYPE_UNIFORM);
+        stage = findViewById(R.id.stage);
+        TextViewCompat.setAutoSizeTextTypeWithDefaults(stage, TextViewCompat.AUTO_SIZE_TEXT_TYPE_UNIFORM);
+        rank = findViewById(R.id.rank);
+        TextViewCompat.setAutoSizeTextTypeWithDefaults(rank, TextViewCompat.AUTO_SIZE_TEXT_TYPE_UNIFORM);
+        mystage = findViewById(R.id.mystage);
+        TextViewCompat.setAutoSizeTextTypeWithDefaults(mystage, TextViewCompat.AUTO_SIZE_TEXT_TYPE_UNIFORM);
+
         // 안드로이드 6.0 이상 버전에서는 CAMERA 권한 허가를 요청한다.
         requestPermissionCamera();
 
@@ -65,7 +79,7 @@ public class Main extends AppCompatActivity {
         final String photoUrl = intent.getStringExtra("photoUrl");        //loginactivity로부터 프로필사진 Url전달받음
         email = intent.getStringExtra("Email");        //구글이메일
 
-        LinearLayout Quest = findViewById(R.id.Quest);
+        ImageView Quest = findViewById(R.id.Quest);
         LinearLayout questlist = findViewById(R.id.questlist);
         LinearLayout main_linear = findViewById(R.id.main_linear);
 
@@ -85,15 +99,15 @@ public class Main extends AppCompatActivity {
         reroll2.setOnClickListener(view -> reroll(reroll2));
         reroll3.setOnClickListener(view -> reroll(reroll3));
 
-        LinearLayout friendlist = findViewById(R.id.Friendlist); // 친구목록으로
+        ImageView friendlist = findViewById(R.id.Friendlist); // 친구목록으로
         friendlist.setOnClickListener(view -> {
             Intent intent12 = new Intent(getApplicationContext(), Friend_list.class);
             intent12.putExtra("Email" , email);
             startActivity(intent12);
         });
 
-        my_page = findViewById(R.id.My_page); // 마이페이지로
-        my_page.setOnClickListener(view -> {
+        ImageView mypage = findViewById(R.id.Mypage); // 마이페이지로
+        mypage.setOnClickListener(view -> {
             Intent intent1 = new Intent(getApplicationContext(), Mypage.class);
             intent1.putExtra("name" , nickName);
             intent1.putExtra("photoUrl",photoUrl);
@@ -102,20 +116,13 @@ public class Main extends AppCompatActivity {
 
         });
 
-        LinearLayout solo = findViewById(R.id.Solo);
-        LinearLayout random = findViewById(R.id.Random);
+        ImageView play = findViewById(R.id.Play);
 
         //솔로 플레이 버튼이 눌렸을때 (모드 선택화면)
-        solo.setOnClickListener(view -> {
-            Intent intent14 = new Intent(getApplicationContext(), Solo_selection.class);
+        play.setOnClickListener(view -> {
+            Intent intent14 = new Intent(getApplicationContext(), Play_selection.class);
             intent14.putExtra("Email" , email);       //우선 id만 넘겨준다 가정
             startActivity(intent14);
-        });
-        //랜덤(협력)
-        random.setOnClickListener(view -> {
-            Intent intent13 = new Intent(getApplicationContext(), ConnectActivity.class);
-            //intent13.putExtra("Email" , email);       //우선 id만 넘겨준다 가정
-            startActivity(intent13);
         });
     }
 

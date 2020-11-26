@@ -66,10 +66,7 @@ public class Ranking extends AppCompatActivity {
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
-
-
     }
 }

@@ -14,7 +14,7 @@
         android:layout_marginBottom="10dp"
         android:padding="10dp"
         android:weightSum="1"
-        android:background="@drawable/buttonshape3">
+        android:background="@drawable/buttonshape8">
         <ImageView
             android:id="@+id/friend_img"
             android:layout_width="0dp"
@@ -30,9 +30,9 @@
             android:layout_weight=".5"
             android:layout_height="wrap_content"
             android:text="I D"
-            android:textStyle="bold"
+            android:fontFamily="@font/blackhansans_regular"
             android:gravity="center_horizontal|center_vertical"
-            android:textColor="#FFE607"
+            android:textColor="#3d65d3"
             android:layout_gravity="center_vertical"
             android:textSize="24sp"/>
         <Button
@@ -43,10 +43,10 @@
             android:text="협력"
             android:textStyle="bold"
             android:layout_marginLeft="10dp"
-            android:textColor="#FFE607"
+            android:textColor="#3d65d3"
             android:textSize="14sp"
             android:layout_gravity="center_vertical"
-            android:background="@drawable/buttonshape3" />
+            android:background="@drawable/buttonshape8" />
         <Button
             android:id="@+id/delete_friend"
             android:layout_width="0dp"
@@ -56,10 +56,10 @@
             android:gravity="center_horizontal|center_vertical"
             android:text="삭제"
             android:textStyle="bold"
-            android:textColor="#FFE607"
+            android:textColor="#3d65d3"
             android:textSize="14sp"
             android:layout_gravity="center_vertical"
-            android:background="@drawable/buttonshape3" />
+            android:background="@drawable/buttonshape8" />
         <ImageView
             android:layout_width="0dp"
             android:layout_height="match_parent"
