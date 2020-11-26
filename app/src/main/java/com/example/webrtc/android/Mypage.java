@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -22,17 +23,10 @@ import android.widget.TextView;
 //임의로 설정버튼을 눌렀을때 db가 정렬되도록 한다
 
 public class Mypage extends AppCompatActivity {
-    private LinearLayout to_setting;
-    private ImageView to_cuscen;
-    private Button ach1;
-    private Button ach2;
-    private Button ach3;
-    private Button rec1;
-    private Button rec2;
-    private Button rec3;
-    private TextView tv_name;
+    private Button ach1,ach2,ach3;
+    private Button rec1,rec2,rec3,rec4;
     private TextView tv_myach;
-    private ImageView iv_profile;
+    private LinearLayout achiv,rec,mypage_linear;
     DatabaseReference DB;
 
     //to_setting이 눌리면 ranking창으로 이동!
@@ -49,11 +43,43 @@ public class Mypage extends AppCompatActivity {
         final String photoUrl = intent.getStringExtra("photoUrl");
         final String email = intent.getStringExtra("Email");
 
-        tv_name = findViewById(R.id.tv_name);
+        TextView tv_name = findViewById(R.id.tv_name);
         tv_name.setText(nickName);
         tv_myach = findViewById(R.id.tv_myach);
 
-        iv_profile = findViewById(R.id.iv_profile);
+        achiv = findViewById(R.id.achiv);
+        rec = findViewById(R.id.rec);
+        mypage_linear = findViewById(R.id.mypage_linear);
+        ImageView btn_ach = findViewById(R.id.btn_ach);
+        ImageView btn_rec = findViewById(R.id.btn_record);
+        ImageView achiv_back = findViewById(R.id.achiv_back);
+        ImageView rec_back = findViewById(R.id.rec_back);
+
+        btn_ach.setOnClickListener(view -> {
+            mypage_linear.setVisibility(View.INVISIBLE);
+            rec.setVisibility(View.INVISIBLE);
+            achiv.setVisibility(View.VISIBLE);
+        });
+
+        btn_rec.setOnClickListener(view -> {
+            mypage_linear.setVisibility(View.INVISIBLE);
+            rec.setVisibility(View.VISIBLE);
+            achiv.setVisibility(View.INVISIBLE);
+        });
+
+        rec_back.setOnClickListener(view -> {
+            mypage_linear.setVisibility(View.VISIBLE);
+            rec.setVisibility(View.INVISIBLE);
+            achiv.setVisibility(View.INVISIBLE);
+        });
+
+        achiv_back.setOnClickListener(view -> {
+            mypage_linear.setVisibility(View.VISIBLE);
+            rec.setVisibility(View.INVISIBLE);
+            achiv.setVisibility(View.INVISIBLE);
+        });
+
+        ImageView iv_profile = findViewById(R.id.iv_profile);
         Glide.with(this).load(photoUrl).into(iv_profile);
 
         ach1 = findViewById(R.id.ach1);
@@ -66,6 +92,7 @@ public class Mypage extends AppCompatActivity {
         rec1 = findViewById(R.id.rec1);
         rec2 = findViewById(R.id.rec2);
         rec3 = findViewById(R.id.rec3);
+        rec4 = findViewById(R.id.rec4);
         rec1.setOnClickListener(view -> { // 각 기록 누르면 db가서 값 가져옴
             DB = FirebaseDatabase.getInstance().getReference("users/" + email + "/total_count");
             DB.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -104,64 +131,51 @@ public class Mypage extends AppCompatActivity {
             stage = "스테이지\n3";
             rec3.setText(stage);
         });
-
-        //설정누르면 랭킹창으로 이동!
-        to_setting = findViewById(R.id.to_setting);
-        to_setting.setOnClickListener(view -> {
-            Intent intent1 = new Intent(getApplicationContext(), Ranking.class);
-            intent1.putExtra("name" , nickName);
-            intent1.putExtra("photoUrl",photoUrl);
-            intent1.putExtra("Email",email);
-            startActivity(intent1);
+        rec4.setOnClickListener(view -> {
+            String playnum;
+            playnum = "11회";
+            rec4.setText(playnum);
         });
-//
-//        to_cuscen.findViewById(R.id.to_cuscen);
-//        to_cuscen.setOnClickListener(view -> { // 원래 고객센터 팝업인데 지금 스테이지로 해둠
-//            Intent intent1 = new Intent(getApplicationContext(), stage1.class);
-//            startActivity(intent1);
-//            intent1.putExtra("name" , nickName);
-//            intent1.putExtra("photoUrl",photoUrl);
-//            intent1.putExtra("Email",email);
-//        });
+
     }
 
     public void select_myach(Button button){ // 업적 눌렀을때 눌린 버튼만 강조 및 내 업적으로 설정
         button.setOnClickListener(view -> { // 나머지는 평범하게
             if(button == findViewById(R.id.ach1)) {
-                button.setTextColor(0xAA575757);
-                button.setBackgroundColor(0xAAFFE607);
+                button.setTextColor(0xAAFFFFFF);
+                button.setBackgroundColor(0xAA3d65d3);
                 tv_myach.setText("매 일 노 력 하 는 자");
-                button.setBackgroundResource(R.drawable.buttonshape4);
-                ach2.setTextColor(0xAAFFE607);
-                ach2.setBackgroundColor(0xAA575757);
-                ach2.setBackgroundResource(R.drawable.buttonshape3);
-                ach3.setTextColor(0xAAFFE607);
-                ach3.setBackgroundColor(0xAA575757);
-                ach3.setBackgroundResource(R.drawable.buttonshape3);
+                button.setBackgroundResource(R.drawable.buttonshape9);
+                ach2.setTextColor(0xAA3d65d3);
+                ach2.setBackgroundColor(0xAAFFFFFF);
+                ach2.setBackgroundResource(R.drawable.buttonshape8);
+                ach3.setTextColor(0xAA3d65d3);
+                ach3.setBackgroundColor(0xAAFFFFFF);
+                ach3.setBackgroundResource(R.drawable.buttonshape8);
             }
             else if(button == findViewById(R.id.ach2)) {
-                button.setTextColor(0xAA575757);
-                button.setBackgroundColor(0xAAFFE607);
+                button.setTextColor(0xAAFFFFFF);
+                button.setBackgroundColor(0xAA3d65d3);
                 tv_myach.setText("스 쿼 트  중 수");
-                button.setBackgroundResource(R.drawable.buttonshape4);
-                ach1.setTextColor(0xAAFFE607);
-                ach1.setBackgroundColor(0xAA575757);
-                ach1.setBackgroundResource(R.drawable.buttonshape3);
-                ach3.setTextColor(0xAAFFE607);
-                ach3.setBackgroundColor(0xAA575757);
-                ach3.setBackgroundResource(R.drawable.buttonshape3);
+                button.setBackgroundResource(R.drawable.buttonshape9);
+                ach1.setTextColor(0xAA3d65d3);
+                ach1.setBackgroundColor(0xAAFFFFFF);
+                ach1.setBackgroundResource(R.drawable.buttonshape8);
+                ach3.setTextColor(0xAA3d65d3);
+                ach3.setBackgroundColor(0xAAFFFFFF);
+                ach3.setBackgroundResource(R.drawable.buttonshape8);
             }
             else {
-                button.setTextColor(0xAA575757);
-                button.setBackgroundColor(0xAAFFE607);
-                tv_myach.setText(button.getText());
-                button.setBackgroundResource(R.drawable.buttonshape4);
-                ach1.setTextColor(0xAAFFE607);
-                ach1.setBackgroundColor(0xAA575757);
-                ach1.setBackgroundResource(R.drawable.buttonshape3);
-                ach2.setTextColor(0xAAFFE607);
-                ach2.setBackgroundColor(0xAA575757);
-                ach2.setBackgroundResource(R.drawable.buttonshape3);
+                button.setTextColor(0xAAFFFFFF);
+                button.setBackgroundColor(0xAA3d65d3);
+                tv_myach.setText("타 임 어 택  강 자");
+                button.setBackgroundResource(R.drawable.buttonshape9);
+                ach1.setTextColor(0xAA3d65d3);
+                ach1.setBackgroundColor(0xAAFFFFFF);
+                ach1.setBackgroundResource(R.drawable.buttonshape8);
+                ach2.setTextColor(0xAA3d65d3);
+                ach2.setBackgroundColor(0xAAFFFFFF);
+                ach2.setBackgroundResource(R.drawable.buttonshape8);
             }
         });
     }

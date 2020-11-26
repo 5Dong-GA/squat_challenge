@@ -15,7 +15,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight=".15"/>
+            android:layout_weight=".1"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -91,7 +91,7 @@
             android:layout_height="0dp"
             android:layout_weight=".05" />
         <LinearLayout
-            android:layout_weight=".13"
+            android:layout_weight=".12"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:orientation="horizontal"
@@ -110,7 +110,7 @@
                 android:autoSizeMinTextSize="25sp"
                 android:autoSizeMaxTextSize="60sp"
                 android:autoSizeStepGranularity="2sp"
-                android:text="R"
+                android:text="H"
                 android:gravity="end"
                 android:fontFamily="@font/blackhansans_regular"/>
             <TextView
@@ -123,7 +123,7 @@
                 android:autoSizeMinTextSize="25sp"
                 android:autoSizeMaxTextSize="60sp"
                 android:autoSizeStepGranularity="2sp"
-                android:text="OOM"
+                android:text="ELLTH"
                 android:gravity="start"
                 android:fontFamily="@font/blackhansans_regular"/>
             <ImageView
@@ -132,7 +132,7 @@
                 android:layout_weight=".3"/>
         </LinearLayout>
         <LinearLayout
-            android:layout_weight=".13"
+            android:layout_weight=".12"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:orientation="horizontal"
@@ -151,11 +151,52 @@
                 android:autoSizeMinTextSize="25sp"
                 android:autoSizeMaxTextSize="60sp"
                 android:autoSizeStepGranularity="2sp"
-                android:text="T"
+                android:text="O"
                 android:gravity="end"
                 android:fontFamily="@font/blackhansans_regular"/>
             <TextView
                 android:id="@+id/splash_title4"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".65"
+                android:textColor="#3d65d3"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="25sp"
+                android:autoSizeMaxTextSize="60sp"
+                android:autoSizeStepGranularity="2sp"
+                android:text="F"
+                android:gravity="start"
+                android:fontFamily="@font/blackhansans_regular"/>
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".1"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_weight=".12"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:weightSum="1">
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".1"/>
+            <TextView
+                android:id="@+id/splash_title5"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".15"
+                android:textColor="#3d65d3"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="25sp"
+                android:autoSizeMaxTextSize="60sp"
+                android:autoSizeStepGranularity="2sp"
+                android:text="T"
+                android:gravity="end"
+                android:fontFamily="@font/blackhansans_regular"/>
+            <TextView
+                android:id="@+id/splash_title6"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight=".65"
@@ -187,7 +228,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight=".23" />
+            android:layout_weight=".18" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

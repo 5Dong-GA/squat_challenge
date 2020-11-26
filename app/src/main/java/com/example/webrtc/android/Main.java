@@ -106,18 +106,25 @@ public class Main extends AppCompatActivity {
             startActivity(intent12);
         });
 
-        ImageView mypage = findViewById(R.id.Mypage); // 마이페이지로
+        LinearLayout mypage = findViewById(R.id.Mypage); // 마이페이지로
         mypage.setOnClickListener(view -> {
             Intent intent1 = new Intent(getApplicationContext(), Mypage.class);
             intent1.putExtra("name" , nickName);
             intent1.putExtra("photoUrl",photoUrl);
             intent1.putExtra("Email",email);
             startActivity(intent1);
+        });
 
+        ImageView Rank = findViewById(R.id.Rank);
+        Rank.setOnClickListener(view -> {
+            Intent intent1 = new Intent(getApplicationContext(), Ranking.class);
+            intent1.putExtra("name" , nickName);
+            intent1.putExtra("photoUrl",photoUrl);
+            intent1.putExtra("Email",email);
+            startActivity(intent1);
         });
 
         ImageView play = findViewById(R.id.Play);
-
         //솔로 플레이 버튼이 눌렸을때 (모드 선택화면)
         play.setOnClickListener(view -> {
             Intent intent14 = new Intent(getApplicationContext(), Play_selection.class);

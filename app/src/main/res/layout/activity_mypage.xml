@@ -76,6 +76,326 @@
             android:layout_height="0dp"
             android:layout_weight=".8">
             <LinearLayout
+                android:id="@+id/achiv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="invisible"
+                android:weightSum="1">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight=".05"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight=".15"
+                    android:weightSum="1"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".1"/>
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".2"
+                        android:src="@drawable/crown3"/>
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".05"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".45"
+                        android:text="ACHIEVEMENT"
+                        android:textColor="#3d65d3"
+                        android:gravity="center"
+                        android:textSize="25sp"
+                        android:fontFamily="@font/blackhansans_regular"
+                        />
+                    <ImageView
+                        android:id="@+id/achiv_back"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".2"
+                        android:src="@drawable/reroll1"/>
+                </LinearLayout>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight=".05"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight=".2"
+                    android:weightSum="1">
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".1"/>
+                    <Button
+                        android:id="@+id/ach1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".3"
+                        android:padding="5dp"
+                        android:gravity="center"
+                        android:text="매 일 노 력\n\n하 는 자"
+                        android:textColor="#3d65d3"
+                        android:fontFamily="@font/blackhansans_regular"
+                        android:layout_gravity="center_vertical"
+                        android:textSize="24sp"
+                        android:background="@drawable/buttonshape8"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".5"
+                        android:text="일주일 연속 로그인"
+                        android:textColor="#575757"
+                        android:gravity="center"
+                        android:fontFamily="@font/blackhansans_regular"
+                        android:textSize="24sp"/>
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".1"/>
+                </LinearLayout>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight=".05"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight=".2"
+                    android:weightSum="1">
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".1"/>
+                    <Button
+                        android:id="@+id/ach2"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".3"
+                        android:padding="5dp"
+                        android:gravity="center"
+                        android:text="스 쿼 트\n\n중 수"
+                        android:textColor="#3d65d3"
+                        android:fontFamily="@font/blackhansans_regular"
+                        android:layout_gravity="center_vertical"
+                        android:textSize="24sp"
+                        android:background="@drawable/buttonshape8"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".5"
+                        android:text="스쿼트 관련 업적\n5개 이상 달성"
+                        android:fontFamily="@font/blackhansans_regular"
+                        android:textColor="#575757"
+                        android:gravity="center"
+                        android:textSize="24sp"/>
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".1"/>
+                </LinearLayout>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight=".05"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight=".2"
+                    android:weightSum="1">
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".1"/>
+                    <Button
+                        android:id="@+id/ach3"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".3"
+                        android:padding="5dp"
+                        android:gravity="center"
+                        android:text="타 임 어 택\n\n강 자"
+                        android:textColor="#3d65d3"
+                        android:fontFamily="@font/blackhansans_regular"
+                        android:layout_gravity="center_vertical"
+                        android:textSize="24sp"
+                        android:background="@drawable/buttonshape8"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".5"
+                        android:fontFamily="@font/blackhansans_regular"
+                        android:text="스피드 모드에서\n10위 안에 들기"
+                        android:textColor="#575757"
+                        android:gravity="center"
+                        android:textSize="24sp"/>
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".1"/>
+                </LinearLayout>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight=".05"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/rec"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="invisible"
+                android:orientation="vertical"
+                android:weightSum="1">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight=".1"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight=".15"
+                    android:weightSum="1"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".1"/>
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".2"
+                        android:src="@drawable/myrecord1"/>
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".05"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".45"
+                        android:text="RECORD"
+                        android:textColor="#3d65d3"
+                        android:gravity="center"
+                        android:textSize="25sp"
+                        android:fontFamily="@font/blackhansans_regular" />
+                    <ImageView
+                        android:id="@+id/rec_back"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".2"
+                        android:src="@drawable/reroll1"/>
+                </LinearLayout>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight=".1"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight=".25"
+                    android:weightSum="1">
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".15"/>
+                    <Button
+                        android:id="@+id/rec1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".3"
+                        android:padding="5dp"
+                        android:gravity="center"
+                        android:text="스 쿼 트\n\n개 수"
+                        android:textColor="#3d65d3"
+                        android:fontFamily="@font/blackhansans_regular"
+                        android:layout_gravity="center_vertical"
+                        android:textSize="24sp"
+                        android:background="@drawable/buttonshape8"/>
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".1"/>
+                    <Button
+                        android:id="@+id/rec2"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".3"
+                        android:padding="5dp"
+                        android:gravity="center"
+                        android:text="최 단 기 록"
+                        android:textColor="#3d65d3"
+                        android:fontFamily="@font/blackhansans_regular"
+                        android:layout_gravity="center_vertical"
+                        android:textSize="24sp"
+                        android:background="@drawable/buttonshape8"/>
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".15"/>
+                </LinearLayout>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight=".05"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight=".25"
+                    android:weightSum="1">
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".15"/>
+                    <Button
+                        android:id="@+id/rec3"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".3"
+                        android:padding="5dp"
+                        android:gravity="center"
+                        android:text="스 테 이 지"
+                        android:textColor="#3d65d3"
+                        android:fontFamily="@font/blackhansans_regular"
+                        android:layout_gravity="center_vertical"
+                        android:textSize="24sp"
+                        android:background="@drawable/buttonshape8"/>
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".1"/>
+                    <Button
+                        android:id="@+id/rec4"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".3"
+                        android:padding="5dp"
+                        android:gravity="center"
+                        android:text="플 레 이\n\n횟 수"
+                        android:textColor="#3d65d3"
+                        android:fontFamily="@font/blackhansans_regular"
+                        android:layout_gravity="center_vertical"
+                        android:textSize="24sp"
+                        android:background="@drawable/buttonshape8"/>
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".15"/>
+                </LinearLayout>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight=".05"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/mypage_linear"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
@@ -101,6 +421,7 @@
                         android:padding="12dp"
                         android:src="@drawable/crown3"/>
                     <ImageView
+                        android:id="@+id/btn_ach"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight=".5"
@@ -131,6 +452,7 @@
                         android:padding="13dp"
                         android:src="@drawable/myrecord1"/>
                     <ImageView
+                        android:id="@+id/btn_record"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight=".5"
@@ -161,6 +483,7 @@
                         android:padding="10dp"
                         android:src="@drawable/setting1"/>
                     <ImageView
+                        android:id="@+id/to_setting"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight=".5"
@@ -191,6 +514,7 @@
                         android:padding="10dp"
                         android:src="@drawable/cuscen1"/>
                     <ImageView
+                        android:id="@+id/to_service"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight=".5"
