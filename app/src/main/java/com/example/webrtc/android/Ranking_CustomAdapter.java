@@ -10,17 +10,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-
 import java.util.ArrayList;
 
-public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomViewHolder> {
+public class Ranking_CustomAdapter extends RecyclerView.Adapter<Ranking_CustomAdapter.CustomViewHolder> {
 
     private ArrayList<RankingUser> arrayList;
     private Context context;
 
 
-    public CustomAdapter(ArrayList<RankingUser> arrayList, Context context) {
+    public Ranking_CustomAdapter(ArrayList<RankingUser> arrayList, Context context) {
         this.arrayList = arrayList;
         this.context = context;
     }
@@ -39,8 +37,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
 //                .load(arrayList.get(position).getProfile())
 //                .into(holder.iv_profile);
         holder.tv_id.setText(arrayList.get(position).getEmail());
-        holder.tv_total_count.setText(String.valueOf(arrayList.get(position).getTotal_count()));
-        holder.tv_speed_time.setText(String.valueOf(arrayList.get(position).getSpeed_time()));
+        holder.tv_record.setText(String.valueOf(arrayList.get(position).getTotal_count()));
+        holder.tv_rank.setText(String.valueOf(arrayList.get(position).getRank()));
     }
 
     @Override
@@ -52,15 +50,15 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
     public class CustomViewHolder extends RecyclerView.ViewHolder {
         ImageView iv_profile;
         TextView tv_id;
-        TextView tv_total_count;
-        TextView tv_speed_time;
+        TextView tv_record;
+        TextView tv_rank;
 
         public CustomViewHolder(@NonNull View itemView) {
             super(itemView);
             this.iv_profile = itemView.findViewById(R.id.iv_profile);
             this.tv_id = itemView.findViewById(R.id.tv_id);
-            this.tv_total_count = itemView.findViewById(R.id.tv_total_count);
-            this.tv_speed_time = itemView.findViewById(R.id.tv_speed_time);
+            this.tv_record = itemView.findViewById(R.id.tv_record);
+            this.tv_rank = itemView.findViewById(R.id.tv_rank);
         }
     }
 }

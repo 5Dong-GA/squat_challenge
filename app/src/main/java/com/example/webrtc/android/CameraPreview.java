@@ -37,6 +37,9 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
         String s = context.toString();
         String field = parsing(s);
 
+        if(field.equals("com.example.webrtc.android.ReadytoPlay")) {
+            mCamera = ReadytoPlay.getCamera();
+        }
         if(field.equals("com.example.webrtc.android.solo_speed_play")) mCamera = solo_speed_play.getCamera();
         //if(field.equals("com.example.squatchallenge.team_play")) mCamera = team_play.getCamera();
         //mCamera = solo_speed_play.getCamera();
