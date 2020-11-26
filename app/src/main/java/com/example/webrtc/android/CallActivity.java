@@ -299,6 +299,8 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
             else{
                 handler.sendEmptyMessage(1);
             }
+
+            target.onFrame(frame);
         }
         synchronized public void setTarget(VideoSink target) {
             this.target = target;

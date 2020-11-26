@@ -41,31 +41,34 @@ public class Friend_list extends AppCompatActivity {
     private Button add_friend_button;
     private LinearLayout add_friend_chang;
     private LinearLayout friend_linear;
-    private TextView friends_num;
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
     RecyclerView.LayoutManager layoutManager;
     DatabaseReference DB;
+    DatabaseReference Friend_DB;
     String email="";
-    String[] friendSet = {"친구를\n추가하세요"};
+    private ArrayList<FriendUser> friendList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_friend_list);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         CollapsingToolbarLayout toolBarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
         toolBarLayout.setTitle(getTitle());
         Intent intent = getIntent();
         email = intent.getStringExtra("Email");
-        DB = FirebaseDatabase.getInstance().getReference("users").child(email);
 
         add_friend_button = findViewById(R.id.add_friend_button); // 메인의 친구추가 버튼
         friend_linear = findViewById(R.id.friend_linear); // 메인의 상단layer
         add_friend_chang = findViewById(R.id.add_friend_chang); // 친구추가 창
         add_friend = findViewById(R.id.add_friend); // 친구추가 창의 친구추가 버튼
-        friends_num = findViewById(R.id.friends_num); // 친구 수
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView = findViewById(R.id.recyclerView); // 아디 연결
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setHasFixedSize(true); // 리사이클러뷰 기존성능 강화
 
         add_friend_button.setOnClickListener(view -> { // 친구추가 누르면 친구추가 창 뜸
             add_friend_chang.setVisibility(View.VISIBLE);
@@ -76,80 +79,50 @@ public class Friend_list extends AppCompatActivity {
             EditText add_friend_name = findViewById(R.id.add_friend_name); // 화면 돌아오면서 추가
             String _add_friend_name = add_friend_name.getText().toString();
             newfriend(_add_friend_name);
+            add_friend_name.setText("");
+            add_friend_name.setHint("아이디를 입력해주세요");
             add_friend_chang.setVisibility(View.INVISIBLE);
             friend_linear.setVisibility(View.VISIBLE);
         });
-        // recyclerview 국룰
-        recyclerView = findViewById(R.id.list_friend);
 
-        recyclerView.setHasFixedSize(true);
 
-        layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
 
-        //친구목록 구현
-        make_friendSet();
-    }
+        //db접근해서 friend_lsit를 보여주는 코드!!!!
+        friendList = new ArrayList<>();
+        //완탐을 해서 친구 이메일을 가져온다
+        Friend_DB = FirebaseDatabase.getInstance().getReference("users/" +email+"/friend_list");
 
-    // recyclerview 국룰
-    public class MyAdapter_friend extends RecyclerView.Adapter<MyAdapter_friend.MyViewHolder> {
-        private String[] textSet ={};
+        Friend_DB.addListenerForSingleValueEvent(new ValueEventListener()   {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-        public MyAdapter_friend(String[] textSet){
-            this.textSet = textSet;
-        }
+                // 파이어베이스 데이터베이스의 데이터를 받아오는 곳
+                friendList.clear(); // 기존 배열리스트가 존재하지않게 초기화
 
-        public class MyViewHolder extends  RecyclerView.ViewHolder{
-            public TextView textView;
-
-            public MyViewHolder(View view){
-                super(view);
-                this.textView = view.findViewById(R.id.friend_name);
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) { // 반복문으로 데이터 List를 추출해냄
+                    String email = (String) snapshot.getValue();
+                    System.out.println(email+"!!!!!!!!!!!!!");
+                    FriendUser FU = new FriendUser(email);
+                    friendList.add(FU); // 담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼 준비
+                }
+                adapter.notifyDataSetChanged(); // 리스트 저장 및 새로고침
             }
-        }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
 
-        public MyViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            View holderView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.friend_list, viewGroup, false);
-            MyViewHolder myViewHolder = new MyViewHolder(holderView);
-            return myViewHolder;
-        }
-
-        @Override
-        public void onBindViewHolder(MyViewHolder myViewHolder, int i) {
-            myViewHolder.textView.setText(this.textSet[i]);
-        }
-
-        @Override
-        public int getItemCount() {
-            return textSet.length;
-        }
+            }
+        });
+        adapter = new Friend_CustomAdapter(friendList, this);
+        recyclerView.setAdapter(adapter); // 리사이클러뷰에 어댑터 연결
     }
 
     public void newfriend(final String fname) {
         DB = FirebaseDatabase.getInstance().getReference("users/" + email + "/friend_list");
         DB.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                boolean exist = false;
-                Iterator<DataSnapshot> child = snapshot.getChildren().iterator();
-                int friends = (int)snapshot.getChildrenCount();
-
-                // 이미친구인지 검사
-                while (child.hasNext()) {
-                    if (child.next().getValue().equals(fname)) {
-                        exist = true;
-                        break;
-                    }
-                }
-
-                // push로 중복넣기, 배열에 추가하고 동기화
-                if(!exist){
-                    DB.push().setValue(fname);
-                    friendSet[friends] = fname;
-                    adapter = new MyAdapter_friend(friendSet);
-                    recyclerView.setAdapter(adapter);
-                    friends_num.setText("친구 0 / "+ (friends+1));
-                }
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                friendList.add(new FriendUser(fname)); // 담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼 준비
+                DB.push().setValue(fname);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -158,28 +131,4 @@ public class Friend_list extends AppCompatActivity {
         });
     }
 
-    public void make_friendSet() {
-
-        DB = FirebaseDatabase.getInstance().getReference("users/" + email + "/friend_list");
-        DB.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                // datasnapshot 정확히 모르겠는데 걍 쓰는중
-                Iterator<DataSnapshot> child = snapshot.getChildren().iterator();
-                int friends = (int)snapshot.getChildrenCount(); // 친구수
-                friends_num.setText("친구 0 / "+ friends);
-
-                // child 돌면서 value 가져와서 배열에 넣음
-                for(int i=0;i<friends;i++) {
-                    friendSet[i] = (String)snapshot.getValue();
-                    child.next();
-                }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-            }
-        });
-        adapter = new MyAdapter_friend(friendSet);
-        recyclerView.setAdapter(adapter);
-    }
 }

@@ -25,7 +25,6 @@ public class Ranking extends AppCompatActivity {
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<RankingUser> arrayList;
-    private FirebaseDatabase database;
     private DatabaseReference DB;
     private int rank =1;
     private int User_num=0;
