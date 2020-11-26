@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="#575757"
+        android:background="#FFFFFF"
         android:weightSum="1">
         <LinearLayout
             android:orientation="horizontal"
@@ -102,7 +102,7 @@
                 android:layout_marginLeft="15dp"
                 android:textColor="#FFE607"
                 android:layout_gravity="center"
-                android:background="@drawable/buttonshape3"
+                android:background="@drawable/buttonshape8"
                 android:layout_weight=".25"/>
             <TextView
                 android:layout_width="0dp"
