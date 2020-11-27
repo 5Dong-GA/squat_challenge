@@ -37,7 +37,7 @@ public class Ranking_CustomAdapter extends RecyclerView.Adapter<Ranking_CustomAd
 //                .load(arrayList.get(position).getProfile())
 //                .into(holder.iv_profile);
         holder.tv_id.setText(arrayList.get(position).getEmail());
-        holder.tv_record.setText(String.valueOf(arrayList.get(position).getTotal_count()));
+        holder.tv_record.setText(String.valueOf(arrayList.get(position).getTotal_count() * -1));
         holder.tv_rank.setText(String.valueOf(arrayList.get(position).getRank()));
     }
 

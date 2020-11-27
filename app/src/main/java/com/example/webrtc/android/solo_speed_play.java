@@ -171,7 +171,7 @@ public class solo_speed_play extends AppCompatActivity implements Camera.Preview
                         down = false;
                         count++;
                         tv_count = findViewById(R.id.tv_count);
-                        tv_count.setText(Integer.toString(count));
+                        tv_count.setText(Integer.toString(-1*count));
 
                         //10개 채웠으면 game_end!
                         if (count >= 3) game_end = true;
@@ -214,9 +214,8 @@ public class solo_speed_play extends AppCompatActivity implements Camera.Preview
         DB_total.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                System.out.println(snapshot.getValue()+"!!!!!!!!!!!!!!!!!!!!!!");
                 long result = (long) snapshot.getValue();
-                result += count;
+                result += -1 * count;
                 DB_total.setValue(result);
             }
             @Override

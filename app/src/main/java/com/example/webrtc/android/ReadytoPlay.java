@@ -30,6 +30,7 @@ public class ReadytoPlay extends AppCompatActivity {
     private static Button camera_preview_button;
     private static Camera mCamera;
     private int RESULT_PERMISSIONS = 100;
+    String email="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +39,9 @@ public class ReadytoPlay extends AppCompatActivity {
 
         // 안드로이드 6.0 이상 버전에서는 CAMERA 권한 허가를 요청한다.
         requestPermissionCamera();
+
+        Intent intent = getIntent();
+        email = intent.getStringExtra("Email");
 
         TextView count1, count2, count3, count4, count5;
 
@@ -58,8 +62,9 @@ public class ReadytoPlay extends AppCompatActivity {
         count5.animate().alpha(0).setDuration(10).setStartDelay(5000);
 
         new Handler().postDelayed(() -> {
-            Intent intent = new Intent(ReadytoPlay.this, solo_speed_play.class);
-            startActivity(intent);
+            Intent intent1 = new Intent(ReadytoPlay.this, solo_speed_play.class);
+            intent1.putExtra("Email" , email);
+            startActivity(intent1);
         }, SPLASH_SCREEN);
     }
 
