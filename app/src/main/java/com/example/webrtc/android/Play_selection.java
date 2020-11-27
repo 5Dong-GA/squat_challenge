@@ -27,6 +27,7 @@ public class Play_selection extends AppCompatActivity {
         TextView to_stage = findViewById(R.id.to_stage);
         to_stage.setOnClickListener(view -> {
             Intent intent14 = new Intent(getApplicationContext(), stage1.class);
+            intent14.putExtra("Enter" , "enter");
             intent14.putExtra("Email" , email);       //우선 id만 넘겨준다 가정
             startActivity(intent14);
         });

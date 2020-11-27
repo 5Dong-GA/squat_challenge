@@ -91,7 +91,7 @@
             android:layout_height="0dp"
             android:layout_weight=".08" />
         <LinearLayout
-            android:layout_weight=".12"
+            android:layout_weight=".15"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:orientation="horizontal"
@@ -111,69 +111,55 @@
                 android:autoSizeMaxTextSize="60sp"
                 android:autoSizeStepGranularity="2sp"
                 android:text="H"
-                android:gravity="end"
+                android:gravity="end|center_vertical"
                 android:fontFamily="@font/blackhansans_regular"/>
             <TextView
                 android:id="@+id/splash_title2"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight=".45"
+                android:layout_weight=".4"
                 android:textColor="#3d65d3"
                 android:autoSizeTextType="uniform"
                 android:autoSizeMinTextSize="25sp"
                 android:autoSizeMaxTextSize="60sp"
                 android:autoSizeStepGranularity="2sp"
-                android:text="EALTH"
-                android:gravity="start"
+                android:text="ealth"
+                android:gravity="start|center_vertical"
                 android:fontFamily="@font/blackhansans_regular"/>
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight=".3"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_weight=".12"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:orientation="horizontal"
-            android:weightSum="1">
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight=".1"/>
             <TextView
                 android:id="@+id/splash_title3"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight=".15"
+                android:layout_weight=".17"
                 android:textColor="#3d65d3"
                 android:autoSizeTextType="uniform"
                 android:autoSizeMinTextSize="25sp"
                 android:autoSizeMaxTextSize="60sp"
                 android:autoSizeStepGranularity="2sp"
                 android:text="O"
-                android:gravity="end"
+                android:gravity="end|center_vertical"
                 android:fontFamily="@font/blackhansans_regular"/>
             <TextView
                 android:id="@+id/splash_title4"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight=".65"
+                android:layout_weight=".08"
                 android:textColor="#3d65d3"
                 android:autoSizeTextType="uniform"
-                android:autoSizeMinTextSize="25sp"
-                android:autoSizeMaxTextSize="60sp"
+                android:autoSizeMinTextSize="20sp"
+                android:autoSizeMaxTextSize="50sp"
                 android:autoSizeStepGranularity="2sp"
-                android:text="F"
-                android:gravity="start"
+                android:text="f"
+                android:gravity="center"
                 android:fontFamily="@font/blackhansans_regular"/>
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight=".1"/>
         </LinearLayout>
+
         <LinearLayout
-            android:layout_weight=".12"
+            android:layout_weight=".15"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:orientation="horizontal"
@@ -193,7 +179,7 @@
                 android:autoSizeMaxTextSize="60sp"
                 android:autoSizeStepGranularity="2sp"
                 android:text="T"
-                android:gravity="end"
+                android:gravity="end|center_vertical"
                 android:fontFamily="@font/blackhansans_regular"/>
             <TextView
                 android:id="@+id/splash_title6"
@@ -205,8 +191,8 @@
                 android:autoSizeMinTextSize="25sp"
                 android:autoSizeMaxTextSize="60sp"
                 android:autoSizeStepGranularity="2sp"
-                android:text="RAINING"
-                android:gravity="start"
+                android:text="OMORROW"
+                android:gravity="start|center_vertical"
                 android:fontFamily="@font/blackhansans_regular"/>
             <ImageView
                 android:layout_width="0dp"

@@ -29,8 +29,6 @@ public class Mypage extends AppCompatActivity {
     private LinearLayout achiv,rec,mypage_linear;
     DatabaseReference DB;
 
-    //to_setting이 눌리면 ranking창으로 이동!
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,13 +53,13 @@ public class Mypage extends AppCompatActivity {
         ImageView achiv_back = findViewById(R.id.achiv_back);
         ImageView rec_back = findViewById(R.id.rec_back);
 
-        btn_ach.setOnClickListener(view -> {
+        btn_ach.setOnClickListener(view -> { // 업적이나 기록 누르면 화면 전환
             mypage_linear.setVisibility(View.INVISIBLE);
             rec.setVisibility(View.INVISIBLE);
             achiv.setVisibility(View.VISIBLE);
         });
 
-        btn_rec.setOnClickListener(view -> {
+        btn_rec.setOnClickListener(view -> { // back 누르면 원상복귀
             mypage_linear.setVisibility(View.INVISIBLE);
             rec.setVisibility(View.VISIBLE);
             achiv.setVisibility(View.INVISIBLE);
@@ -118,7 +116,7 @@ public class Mypage extends AppCompatActivity {
                     long ms = t % 1000;
 
                     String recTime = String.format("%d:%02d:%03d", m, s, ms);
-                    String time = recTime + "초";
+                    String time = recTime;
                     rec2.setText(time);
                 }
                 @Override
