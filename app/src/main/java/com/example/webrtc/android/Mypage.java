@@ -28,6 +28,7 @@ public class Mypage extends AppCompatActivity {
     private Button rec1,rec2,rec3,rec4;
     private TextView tv_myach;
     private LinearLayout achiv,rec,mypage_linear;
+    private String email;
     DatabaseReference DB;
 
     @Override
@@ -40,7 +41,7 @@ public class Mypage extends AppCompatActivity {
         Intent intent = getIntent();
         final String nickName = intent.getStringExtra("name");
         final String photoUrl = intent.getStringExtra("photoUrl");
-        final String email = intent.getStringExtra("Email");
+        email = intent.getStringExtra("Email");
 
         TextView tv_name = findViewById(R.id.tv_name);
         tv_name.setText(nickName);
@@ -92,6 +93,7 @@ public class Mypage extends AppCompatActivity {
         rec2 = findViewById(R.id.rec2);
         rec3 = findViewById(R.id.rec3);
         rec4 = findViewById(R.id.rec4);
+
         rec1.setOnClickListener(view -> { // 각 기록 누르면 db가서 값 가져옴
             DB = FirebaseDatabase.getInstance().getReference("users/" + email + "/total_count");
             DB.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -144,6 +146,10 @@ public class Mypage extends AppCompatActivity {
                 button.setTextColor(0xAAFFFFFF);
                 button.setBackgroundColor(0xAA3d65d3);
                 tv_myach.setText("매 일 노 력 하 는 자");
+
+                DB = FirebaseDatabase.getInstance().getReference("users/" + email + "/achievement");         //완탐을 위해
+                DB.setValue("매 일 노 력 하 는 자");
+
                 button.setBackgroundResource(R.drawable.buttonshape9);
                 ach2.setTextColor(0xAA3d65d3);
                 ach2.setBackgroundColor(0xAAFFFFFF);
@@ -156,6 +162,10 @@ public class Mypage extends AppCompatActivity {
                 button.setTextColor(0xAAFFFFFF);
                 button.setBackgroundColor(0xAA3d65d3);
                 tv_myach.setText("스 쿼 트  중 수");
+
+                DB = FirebaseDatabase.getInstance().getReference("users/" + email + "/achievement");       //완탐을 위해
+                DB.setValue("스 쿼 트 중 수");
+
                 button.setBackgroundResource(R.drawable.buttonshape9);
                 ach1.setTextColor(0xAA3d65d3);
                 ach1.setBackgroundColor(0xAAFFFFFF);
@@ -168,7 +178,11 @@ public class Mypage extends AppCompatActivity {
                 button.setTextColor(0xAAFFFFFF);
                 button.setBackgroundColor(0xAA3d65d3);
                 tv_myach.setText("타 임 어 택  강 자");
-                button.setBackgroundResource(R.drawable.buttonshape9);
+
+                DB = FirebaseDatabase.getInstance().getReference("users/" + email + "/achievement");    //완탐을 위해
+                DB.setValue("타 임 어 택 강 자");
+
+               button.setBackgroundResource(R.drawable.buttonshape9);
                 ach1.setTextColor(0xAA3d65d3);
                 ach1.setBackgroundColor(0xAAFFFFFF);
                 ach1.setBackgroundResource(R.drawable.buttonshape8);

@@ -257,7 +257,6 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
                 return;
             }
 
-            target.onFrame(frame);
 
             frame.getBuffer().toI420().getDataY();
             ByteBuffer y = frame.getBuffer().toI420().getDataY();
@@ -302,6 +301,7 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
 
             target.onFrame(frame);
         }
+
         synchronized public void setTarget(VideoSink target) {
             this.target = target;
         }
@@ -439,6 +439,9 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
                 throw new RuntimeException(
                         "Failed to open video file for output: " + saveRemoteVideoToFile, e);
             }
+
+            //target.onFrame(frame);
+
         }
         fullscreenRenderer.init(eglBase.getEglBaseContext(), null);
         fullscreenRenderer.setScalingType(ScalingType.SCALE_ASPECT_FILL);

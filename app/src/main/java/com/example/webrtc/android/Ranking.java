@@ -49,20 +49,6 @@ public class Ranking extends AppCompatActivity {
 
         //완탐을 해서 이메일 , total_count를 가져온다
         DB = FirebaseDatabase.getInstance().getReference("users");
-//        DB.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot datasnapshot) {
-//                for (DataSnapshot snapshot : datasnapshot.getChildren()) { // 반복문으로 user수 파악
-//                    User_num++;
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-//        System.out.println(User_num+"!!!!!!!!!!!!!!!!!!!!!");
 
         Query Q = DB.orderByChild("total_count");
 

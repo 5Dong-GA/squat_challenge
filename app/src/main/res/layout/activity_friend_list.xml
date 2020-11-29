@@ -118,7 +118,7 @@
                                 android:layout_weight=".48"
                                 android:fontFamily="@font/blackhansans_regular"
                                 android:gravity="center"
-                                android:text=" 친 구( 0 / 0 )"
+                                android:text="친 구 추 가"
                                 android:textColor="#FFFFFF"
                                 android:autoSizeTextType="uniform"
                                 android:autoSizeMinTextSize="20sp"

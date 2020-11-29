@@ -63,7 +63,6 @@ public class solo_speed_play extends AppCompatActivity implements Camera.Preview
     public static solo_speed_play getInstance;
     //모델 판단을 위해
     Interpreter tflite;
-    public TextView tv_result;
     public TextView tv_count;
     public int count = 0;
     public int[] arr = new int[3];      //0(up) 1(down)
@@ -171,7 +170,7 @@ public class solo_speed_play extends AppCompatActivity implements Camera.Preview
                         down = false;
                         count++;
                         tv_count = findViewById(R.id.tv_count);
-                        tv_count.setText(Integer.toString(-1*count));
+                        tv_count.setText(Integer.toString(count));
 
                         //10개 채웠으면 game_end!
                         if (count >= 3) game_end = true;
@@ -192,7 +191,6 @@ public class solo_speed_play extends AppCompatActivity implements Camera.Preview
 
     //total_count 와 speed_time update
     public void updateRecord() {
-        //String[] s = {"/speed_time", "/total_count"};
         //speed_time
         DB_speed = FirebaseDatabase.getInstance().getReference("/users/" + email + "/speed_time");         //해당 아이디 값들 조회
         DB_speed.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -229,7 +227,6 @@ public class solo_speed_play extends AppCompatActivity implements Camera.Preview
     @Override
     public void onPreviewFrame(byte[] bytes, Camera camera) {
         //결과값 출력을 위해
-        tv_result = findViewById(R.id.tv_result);
         tv_count = findViewById(R.id.tv_count);
         //게임이 끝나면
         if (game_end) {
@@ -270,12 +267,10 @@ public class solo_speed_play extends AppCompatActivity implements Camera.Preview
 
             //서있을때
             if (outputs[0][0] > outputs[0][1]) {
-                tv_result.setText("up");
                 determine(0);
             }
             //앉아있을때
             else {
-                tv_result.setText("down");
                 determine(1);
             }
         }
