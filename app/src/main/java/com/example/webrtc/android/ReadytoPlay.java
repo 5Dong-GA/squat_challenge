@@ -65,6 +65,7 @@ public class ReadytoPlay extends AppCompatActivity {
             Intent intent1 = new Intent(ReadytoPlay.this, solo_speed_play.class);
             intent1.putExtra("Email" , email);
             startActivity(intent1);
+
         }, SPLASH_SCREEN);
     }
 

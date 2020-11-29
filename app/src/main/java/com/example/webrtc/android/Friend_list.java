@@ -113,6 +113,8 @@ public class Friend_list extends AppCompatActivity {
         recyclerView.setAdapter(adapter); // 리사이클러뷰에 어댑터 연결
     }
 
+
+    //친구추가
     public void newfriend(final String fname) {
         DB = FirebaseDatabase.getInstance().getReference("users/" + email + "/friend_list");
         DB.addListenerForSingleValueEvent(new ValueEventListener() {
