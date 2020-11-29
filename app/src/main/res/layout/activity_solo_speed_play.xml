@@ -31,20 +31,23 @@
                     android:layout_marginTop="32dp"
                     android:layout_gravity="center"
                     android:text="TextView"
-                    android:fontFamily="@font/kanit_black"
+                    android:fontFamily="@font/blackhansans_regular"
                     android:textColor="#000000"
-                    android:textSize="30sp" />
+                    android:textSize="30sp"
+                    android:gravity="center"
+                    android:background="@drawable/buttonshape8"/>
                 <TextView
                     android:id="@+id/tv_count"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
                     android:layout_marginTop="32dp"
                     android:layout_gravity="center"
-                    android:fontFamily="@font/kanit_black"
-                    android:text="TextView"
-                    android:textSize="44sp"
+                    android:fontFamily="@font/blackhansans_regular"
+                    android:text="0"
+                    android:textSize="60sp"
                     android:layout_weight=".45"
-                    android:textStyle="bold" />
+                    android:gravity="center"
+                    android:textColor="#575757"/>
                 <TextView
                     android:id="@+id/tv_result"
                     android:layout_width="wrap_content"
@@ -58,7 +61,7 @@
                     android:gravity="center"
                     android:textStyle="bold"
                     android:text="TextView"
-                    android:visibility="visible"
+                    android:visibility="invisible"
                     android:textSize="34sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

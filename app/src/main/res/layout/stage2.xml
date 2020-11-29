@@ -19,9 +19,11 @@
             android:layout_weight=".12"
             android:weightSum="1">
             <ImageView
+                android:id="@+id/home2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight=".25"/>
+                android:layout_weight=".25"
+                android:background="@drawable/home2"/>
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

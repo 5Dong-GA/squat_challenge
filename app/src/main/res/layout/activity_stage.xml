@@ -30,7 +30,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight=".25"
-                android:background="@drawable/home1"/>
+                android:background="@drawable/home2"/>
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

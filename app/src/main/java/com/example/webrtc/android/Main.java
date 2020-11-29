@@ -29,12 +29,8 @@ public class Main extends AppCompatActivity {
 
     TextView myach,myname,mystage,myrank,stage,rank;
 
-    private TextView quest_name1;
-    private TextView quest_name2;
-    private TextView quest_name3;
-    private ImageView reroll1;
-    private ImageView reroll2;
-    private ImageView reroll3;
+    private TextView quest_name1,quest_name2,quest_name3;
+    private ImageView reroll1,reroll2,reroll3;
     private int questcnt;
     Map<Integer,String> questSet = new HashMap<>();
     Main.quest[] today_quest = new Main.quest[3];
