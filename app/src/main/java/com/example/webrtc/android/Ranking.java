@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.firebase.database.DataSnapshot;
@@ -21,13 +22,13 @@ public class Ranking extends AppCompatActivity {
 //    public DatabaseReference tmp;
 //    public List <RankingUser> RUlist = new ArrayList<>();
 
-    private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<RankingUser> arrayList;
     private DatabaseReference DB;
     private int rank =1;
     private int User_num=0;
+    private String email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +36,12 @@ public class Ranking extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ranking);
 
-        recyclerView = findViewById(R.id.recyclerView); // 아디 연결
+        Intent intent = getIntent();
+        final String nickName = intent.getStringExtra("name");        //loginactivity로부터 닉네임 전달받음
+        final String photoUrl = intent.getStringExtra("photoUrl");        //loginactivity로부터 프로필사진 Url전달받음
+        email = intent.getStringExtra("Email");
+
+        RecyclerView recyclerView = findViewById(R.id.recyclerView); // 아디 연결
         recyclerView.setHasFixedSize(true); // 리사이클러뷰 기존성능 강화
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);

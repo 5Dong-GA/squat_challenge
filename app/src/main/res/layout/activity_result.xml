@@ -44,6 +44,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight=".33"/>
                     <ImageView
+                        android:id="@+id/game_result"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight=".34"

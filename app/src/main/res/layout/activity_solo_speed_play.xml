@@ -30,22 +30,21 @@
                     android:layout_weight=".3"
                     android:layout_marginTop="32dp"
                     android:layout_gravity="center"
-                    android:text="TextView"
+                    android:text="0"
                     android:fontFamily="@font/blackhansans_regular"
                     android:textColor="#000000"
                     android:textSize="30sp"
-                    android:gravity="center"
-                    android:background="@drawable/buttonshape8"/>
+                    android:gravity="center"/>
                 <TextView
                     android:id="@+id/tv_count"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
+                    android:layout_weight=".45"
                     android:layout_marginTop="32dp"
                     android:layout_gravity="center"
                     android:fontFamily="@font/blackhansans_regular"
                     android:text="0"
-                    android:textSize="60sp"
-                    android:layout_weight=".45"
+                    android:textSize="65sp"
                     android:gravity="center"
                     android:textColor="#575757"/>
                 <TextView

@@ -1,5 +1,6 @@
 package com.example.webrtc.android;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatAutoCompleteTextView;
 
@@ -9,9 +10,17 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import org.w3c.dom.Text;
 
 public class stage1 extends AppCompatActivity {
+
+    DatabaseReference DB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,13 +58,25 @@ public class stage1 extends AppCompatActivity {
         });
     }
 
-    public void stage_clear(String result, String stage){ // 깼으면 해당 스테이지 체크로 변환
+    public void stage_clear(String result, String stage){ // 깼을때 해당 스테이지 DB에 넣어주기
+        int current_stage = Integer.parseInt(stage);
         if (result.equals("clear")){
-            if (stage.equals("1")) {
-                TextView textview = findViewById(R.id.stage1);
-                textview.setBackgroundResource(R.drawable.check1);
-                textview.setText("");
-            }
+            DB = FirebaseDatabase.getInstance().getReference("users"+"/stage_num");
+            DB.addListenerForSingleValueEvent(new ValueEventListener()   {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    int ranked_stage;
+                    DataSnapshot snapshot = dataSnapshot;
+                    ranked_stage = (int)snapshot.getValue();
+                    if(ranked_stage<current_stage){
+                        DB.setValue(stage);
+                    }
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
         }
     }
 }

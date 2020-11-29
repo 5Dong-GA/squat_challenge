@@ -83,8 +83,6 @@ public class Friend_list extends AppCompatActivity {
             friend_linear.setVisibility(View.VISIBLE);
         });
 
-
-
         //db접근해서 friend_lsit를 보여주는 코드!!!!
         friendList = new ArrayList<>();
         //완탐을 해서 친구 이메일을 가져온다
@@ -126,5 +124,4 @@ public class Friend_list extends AppCompatActivity {
             }
         });
     }
-
 }
