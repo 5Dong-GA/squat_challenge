@@ -36,9 +36,22 @@ public class stage1 extends AppCompatActivity {
 
         TextView stage1 = findViewById(R.id.stage1);
         stage1.setOnClickListener(view -> {
-            Intent intent13 = new Intent(getApplicationContext(), Result.class);
+            Intent intent13 = new Intent(getApplicationContext(), ConnectActivity.class);
             startActivity(intent13);
         });
+
+        TextView stage2 = findViewById(R.id.stage2);
+        stage1.setOnClickListener(view -> {
+            Intent intent13 = new Intent(getApplicationContext(), ConnectActivity.class);
+            startActivity(intent13);
+        });
+
+        TextView stage3 = findViewById(R.id.stage3);
+        stage1.setOnClickListener(view -> {
+            Intent intent13 = new Intent(getApplicationContext(), ConnectActivity.class);
+            startActivity(intent13);
+        });
+
 
         ImageView home1 = findViewById(R.id.home1);
         home1.setOnClickListener(view -> {

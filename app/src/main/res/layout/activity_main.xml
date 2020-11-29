@@ -38,36 +38,37 @@
                 android:orientation="vertical"
                 android:layout_weight=".5"
                 android:weightSum="1">
+
                 <TextView
                     android:id="@+id/myach"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight=".3"
-                    android:textColor="#FFFFFF"
-                    android:text="연승가도"
-                    android:autoSizeTextType="uniform"
-                    android:autoSizeMinTextSize="10sp"
                     android:autoSizeMaxTextSize="20sp"
+                    android:autoSizeMinTextSize="10sp"
                     android:autoSizeStepGranularity="2sp"
+                    android:autoSizeTextType="uniform"
                     android:fontFamily="@font/blackhansans_regular"
-                    android:gravity="center"/>
+                    android:gravity="center"
+                    android:text="스쿼트 꿈나무"
+                    android:textColor="#FFFFFF" />
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight=".1"/>
+
                 <TextView
                     android:id="@+id/myname"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight=".6"
-                    android:textColor="#FFFFFF"
-                    android:text="유동준"
-                    android:autoSizeTextType="uniform"
-                    android:autoSizeMinTextSize="30sp"
                     android:autoSizeMaxTextSize="45sp"
+                    android:autoSizeMinTextSize="30sp"
                     android:autoSizeStepGranularity="2sp"
+                    android:autoSizeTextType="uniform"
                     android:fontFamily="@font/blackhansans_regular"
-                    android:gravity="center" />
+                    android:gravity="center"
+                    android:textColor="#FFFFFF" />
             </LinearLayout>
         </LinearLayout>
         <ImageView
@@ -102,20 +103,20 @@
                     android:textColor="#FFFA73"
                     android:fontFamily="@font/blackhansans_regular"
                     android:gravity="center"/>
+
                 <TextView
                     android:id="@+id/mystage"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight=".5"
-                    android:text="4"
-                    android:textColor="#FFFFFF"
-                    android:autoSizeTextType="uniform"
-                    android:autoSizeMinTextSize="15sp"
                     android:autoSizeMaxTextSize="30sp"
+                    android:autoSizeMinTextSize="15sp"
                     android:autoSizeStepGranularity="2sp"
+                    android:autoSizeTextType="uniform"
                     android:fontFamily="@font/blackhansans_regular"
-                    android:textStyle="bold"
-                    android:gravity="center"/>
+                    android:gravity="center"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold" />
             </LinearLayout>
             <ImageView
                 android:layout_width="0dp"
@@ -139,20 +140,20 @@
                     android:textColor="#FFFA73"
                     android:fontFamily="@font/blackhansans_regular"
                     android:gravity="center"/>
+
                 <TextView
                     android:id="@+id/myrank"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight=".5"
-                    android:text="33"
-                    android:textColor="#FFFFFF"
-                    android:autoSizeTextType="uniform"
-                    android:autoSizeMinTextSize="15sp"
                     android:autoSizeMaxTextSize="30sp"
+                    android:autoSizeMinTextSize="15sp"
                     android:autoSizeStepGranularity="2sp"
-                    android:textStyle="bold"
+                    android:autoSizeTextType="uniform"
                     android:fontFamily="@font/blackhansans_regular"
-                    android:gravity="center"/>
+                    android:gravity="center"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold" />
             </LinearLayout>
             <ImageView
                 android:layout_width="0dp"
