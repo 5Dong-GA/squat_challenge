@@ -20,22 +20,22 @@ public class Play_selection extends AppCompatActivity {
         TextView to_speed = findViewById(R.id.to_speed);
         to_speed.setOnClickListener(view -> {
             Intent intent13 = new Intent(getApplicationContext(), ReadytoPlay.class);
-            intent13.putExtra("Email" , email);       //우선 id만 넘겨준다 가정
+            intent13.putExtra("Email" , email);
             startActivity(intent13);
         });
 
         TextView to_stage = findViewById(R.id.to_stage);
         to_stage.setOnClickListener(view -> {
             Intent intent14 = new Intent(getApplicationContext(), stage1.class);
-            intent14.putExtra("Enter" , "enter");
-            intent14.putExtra("Email" , email);       //우선 id만 넘겨준다 가정
+            intent14.putExtra("Enter" , "enter"); // 플레이에서 들어간다는 표시
+            intent14.putExtra("Email" , email);
             startActivity(intent14);
         });
 
         TextView to_team = findViewById(R.id.to_team);
         to_team.setOnClickListener(view -> {
             Intent intent14 = new Intent(getApplicationContext(), ConnectActivity.class);
-            intent14.putExtra("Email" , email);       //우선 id만 넘겨준다 가정
+            intent14.putExtra("Email" , email);
             startActivity(intent14);
         });
     }

@@ -99,7 +99,7 @@
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight=".1"/>
+                android:layout_weight=".05"/>
             <TextView
                 android:id="@+id/splash_title1"
                 android:layout_width="0dp"
@@ -107,8 +107,8 @@
                 android:layout_weight=".15"
                 android:textColor="#3d65d3"
                 android:autoSizeTextType="uniform"
-                android:autoSizeMinTextSize="25sp"
-                android:autoSizeMaxTextSize="60sp"
+                android:autoSizeMinTextSize="20sp"
+                android:autoSizeMaxTextSize="55sp"
                 android:autoSizeStepGranularity="2sp"
                 android:text="H"
                 android:gravity="end|center_vertical"
@@ -120,8 +120,8 @@
                 android:layout_weight=".4"
                 android:textColor="#3d65d3"
                 android:autoSizeTextType="uniform"
-                android:autoSizeMinTextSize="25sp"
-                android:autoSizeMaxTextSize="60sp"
+                android:autoSizeMinTextSize="20sp"
+                android:autoSizeMaxTextSize="55sp"
                 android:autoSizeStepGranularity="2sp"
                 android:text="ealth"
                 android:gravity="start|center_vertical"
@@ -133,8 +133,8 @@
                 android:layout_weight=".17"
                 android:textColor="#3d65d3"
                 android:autoSizeTextType="uniform"
-                android:autoSizeMinTextSize="25sp"
-                android:autoSizeMaxTextSize="60sp"
+                android:autoSizeMinTextSize="20sp"
+                android:autoSizeMaxTextSize="55sp"
                 android:autoSizeStepGranularity="2sp"
                 android:text="O"
                 android:gravity="end|center_vertical"
@@ -155,7 +155,7 @@
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight=".1"/>
+                android:layout_weight=".15"/>
         </LinearLayout>
 
         <LinearLayout
@@ -167,7 +167,7 @@
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight=".1"/>
+                android:layout_weight=".05"/>
             <TextView
                 android:id="@+id/splash_title5"
                 android:layout_width="0dp"
@@ -175,8 +175,8 @@
                 android:layout_weight=".15"
                 android:textColor="#3d65d3"
                 android:autoSizeTextType="uniform"
-                android:autoSizeMinTextSize="25sp"
-                android:autoSizeMaxTextSize="60sp"
+                android:autoSizeMinTextSize="20sp"
+                android:autoSizeMaxTextSize="55sp"
                 android:autoSizeStepGranularity="2sp"
                 android:text="T"
                 android:gravity="end|center_vertical"
@@ -185,11 +185,11 @@
                 android:id="@+id/splash_title6"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight=".65"
+                android:layout_weight=".7"
                 android:textColor="#3d65d3"
                 android:autoSizeTextType="uniform"
-                android:autoSizeMinTextSize="25sp"
-                android:autoSizeMaxTextSize="60sp"
+                android:autoSizeMinTextSize="20sp"
+                android:autoSizeMaxTextSize="55sp"
                 android:autoSizeStepGranularity="2sp"
                 android:text="OMORROW"
                 android:gravity="start|center_vertical"

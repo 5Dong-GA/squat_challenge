@@ -19,11 +19,12 @@ public class stage1 extends AppCompatActivity {
         setContentView(R.layout.activity_stage);
 
         Intent intent = getIntent();
-
+        // 들어올때 플레이하러 들어온건지 아님 플레이 끝나고 결과창에서 온건지 판단
         final String isentering = intent.getStringExtra("Enter");
         final String result = intent.getStringExtra("Result");
         final String stage = intent.getStringExtra("Stage");
 
+        // 결과창에서 온거면 몇 스테이지 깬건지 받아서 상태 변경
         if (isentering.equals("exit")){
             stage_clear(result, stage);
         }
@@ -31,6 +32,7 @@ public class stage1 extends AppCompatActivity {
         ImageView upto_stage2 = findViewById(R.id.upto_stage2); // 화살표로 페이지 이동
         upto_stage2.setOnClickListener(view -> {
             Intent intent12 = new Intent(getApplicationContext(), stage2.class);
+            intent12.putExtra("Enter" , "enter");
             startActivity(intent12);
         });
 
@@ -60,7 +62,7 @@ public class stage1 extends AppCompatActivity {
         });
     }
 
-    public void stage_clear(String result, String stage){
+    public void stage_clear(String result, String stage){ // 깼으면 해당 스테이지 체크로 변환
         if (result.equals("clear")){
             if (stage.equals("1")) {
                 TextView textview = findViewById(R.id.stage1);

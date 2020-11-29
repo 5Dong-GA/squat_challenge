@@ -16,6 +16,7 @@ public class stage3 extends AppCompatActivity {
         ImageView downto_stage2 = findViewById(R.id.downto_stage2); // 화살표로 페이지 이동
         downto_stage2.setOnClickListener(view -> {
             Intent intent13 = new Intent(getApplicationContext(), stage2.class);
+            intent13.putExtra("Enter" , "enter");
             startActivity(intent13);
         });
 
