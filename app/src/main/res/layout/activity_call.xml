@@ -28,19 +28,28 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-    </FrameLayout>
-    <FrameLayout
-        android:id="@+id/hud_fragment_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        <FrameLayout
+            android:id="@+id/hud_fragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/tv_count"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0"
-            android:textColor="#FFFFFF"
-            android:textSize="36sp" />
+            <TextView
+                android:id="@+id/tv_timer1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:layout_gravity="end"
+                android:textColor="#FFFFFF"
+                android:textSize="36sp" />
+
+            <TextView
+                android:id="@+id/tv_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textColor="#FFFFFF"
+                android:textSize="36sp" />
+        </FrameLayout>
     </FrameLayout>
 
 </FrameLayout>

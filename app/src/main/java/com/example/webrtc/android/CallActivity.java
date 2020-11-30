@@ -27,8 +27,10 @@ import android.media.projection.MediaProjectionManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Message;
+import android.os.SystemClock;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
@@ -46,7 +48,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-
+import android.os.CountDownTimer;
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -177,6 +179,8 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
     public boolean down = false;
     private boolean game_end = false;
     private boolean game_start = false;
+    private CountDownTimer countDownTimer;
+    public TextView tv_timer1;
 
     //handler (카운터)
     Handler handler = new Handler() {
@@ -185,13 +189,38 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
             if(msg.what == 0){
                 determine(0);
             }
-            else{
+            else if(msg.what == 1){
                 determine(1);
             }
+//            else
+//            {
+//                if (!game_end)
+//                    handler.sendEmptyMessage(2);
+//            }
             //handler.sendEmptyMessage(0);
 
         }
     };
+
+    //카운트를 위해
+    public void countDownTimer() {
+        System.out.println("COUNTDOWNTIMER!!!!!!!!!!!!!!!!!!!!!!");
+        countDownTimer = new CountDownTimer(5000, 1000) {
+            @Override
+            public void onTick(long l) {
+                //0초면 토스트 메세지 띄운다
+                if (l / 1000 == 0) {
+                    Toast.makeText(getApplicationContext(), "Start!", Toast.LENGTH_SHORT).show();
+                } else tv_timer1.setText(Long.toString(l / 1000));
+            }
+
+            @Override
+            public void onFinish() {
+
+            }
+        };
+    }
+
     //판단 (up,down) 카운팅
     public void determine(int n) {
         if (index == 0 || index == 1) {
@@ -256,7 +285,6 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
                 Logging.d(TAG, "Dropping frame in proxy because target is null.");
                 return;
             }
-
 
             frame.getBuffer().toI420().getDataY();
             ByteBuffer y = frame.getBuffer().toI420().getDataY();
@@ -398,6 +426,8 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
         callFragment = new CallFragment();
         hudFragment = new HudFragment();
 
+        //Timer 조절
+        tv_timer1 = findViewById(R.id.tv_timer1);
         tflite = getTfliteInterpreter("model.tflite");
 
         // Show/hide call control fragment on view click.
@@ -802,6 +832,8 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
         // Enable statistics callback.
         peerConnectionClient.enableStatsEvents(true, STAT_CALLBACK_PERIOD);
         setSwappedFeeds(false /* isSwappedFeeds */);
+        countDownTimer();
+        countDownTimer.start();
     }
 
     // This method is called when the audio manager reports audio device change,
