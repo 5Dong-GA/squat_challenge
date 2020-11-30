@@ -96,19 +96,15 @@
             android:layout_height="0dp"
             android:orientation="horizontal"
             android:weightSum="1">
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight=".05"/>
             <TextView
                 android:id="@+id/splash_title1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight=".15"
+                android:layout_weight=".2"
                 android:textColor="#3d65d3"
                 android:autoSizeTextType="uniform"
                 android:autoSizeMinTextSize="20sp"
-                android:autoSizeMaxTextSize="50sp"
+                android:autoSizeMaxTextSize="40sp"
                 android:autoSizeStepGranularity="2sp"
                 android:text="H"
                 android:gravity="end|center_vertical"
@@ -121,7 +117,7 @@
                 android:textColor="#3d65d3"
                 android:autoSizeTextType="uniform"
                 android:autoSizeMinTextSize="20sp"
-                android:autoSizeMaxTextSize="50sp"
+                android:autoSizeMaxTextSize="40sp"
                 android:autoSizeStepGranularity="2sp"
                 android:text="ealth"
                 android:gravity="start|center_vertical"
@@ -130,11 +126,11 @@
                 android:id="@+id/splash_title3"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight=".17"
+                android:layout_weight=".2"
                 android:textColor="#3d65d3"
                 android:autoSizeTextType="uniform"
                 android:autoSizeMinTextSize="20sp"
-                android:autoSizeMaxTextSize="50sp"
+                android:autoSizeMaxTextSize="40sp"
                 android:autoSizeStepGranularity="2sp"
                 android:text="O"
                 android:gravity="end|center_vertical"
@@ -143,11 +139,11 @@
                 android:id="@+id/splash_title4"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight=".08"
+                android:layout_weight=".1"
                 android:textColor="#3d65d3"
                 android:autoSizeTextType="uniform"
                 android:autoSizeMinTextSize="20sp"
-                android:autoSizeMaxTextSize="50sp"
+                android:autoSizeMaxTextSize="40sp"
                 android:autoSizeStepGranularity="2sp"
                 android:text="f"
                 android:gravity="center"
@@ -155,7 +151,7 @@
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight=".15"/>
+                android:layout_weight=".1"/>
         </LinearLayout>
 
         <LinearLayout
@@ -164,19 +160,16 @@
             android:layout_height="0dp"
             android:orientation="horizontal"
             android:weightSum="1">
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight=".05"/>
+
             <TextView
                 android:id="@+id/splash_title5"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight=".15"
+                android:layout_weight=".2"
                 android:textColor="#3d65d3"
                 android:autoSizeTextType="uniform"
                 android:autoSizeMinTextSize="20sp"
-                android:autoSizeMaxTextSize="50sp"
+                android:autoSizeMaxTextSize="40sp"
                 android:autoSizeStepGranularity="2sp"
                 android:text="T"
                 android:gravity="end|center_vertical"
@@ -189,7 +182,7 @@
                 android:textColor="#3d65d3"
                 android:autoSizeTextType="uniform"
                 android:autoSizeMinTextSize="20sp"
-                android:autoSizeMaxTextSize="50sp"
+                android:autoSizeMaxTextSize="40sp"
                 android:autoSizeStepGranularity="2sp"
                 android:text="OMORROW"
                 android:gravity="start|center_vertical"

@@ -27,9 +27,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="HardcodedDebugMode">
-        <activity android:name=".Result"
-            android:theme="@style/Transparent">
-        </activity>
+        <activity android:name=".VS_Result"></activity>
+        <activity
+            android:name=".Result"
+            android:theme="@style/Transparent"></activity>
         <activity android:name=".Ranking" />
         <activity android:name=".ReadytoPlay" />
         <activity android:name=".Splash">

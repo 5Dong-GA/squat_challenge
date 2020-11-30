@@ -1,73 +1,208 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_margin="16dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="1"
+    android:background="#FFFFFF"
     android:layout_centerHorizontal="true">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".2"
+        android:orientation="horizontal"
+        android:background="#3d65d3"
+        android:weightSum="1">
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".25"
+            android:padding="20dp"
+            android:src="@drawable/connect_phone2"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="CONNECT"
+            android:fontFamily="@font/blackhansans_regular"
+            android:textSize="36sp"
+            android:textColor="#FFFFFF"
+            android:layout_weight=".5"/>
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".25"
+            android:padding="20dp"
+            android:src="@drawable/connect_phone3"/>
+    </LinearLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".1"/>
     <TextView
         android:id="@+id/room_edittext_description"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/room_description"/>
-
+        android:layout_height="0dp"
+        android:layout_weight=".15"
+        android:textColor="#575757"
+        android:gravity="center"
+        android:textSize="30sp"
+        android:fontFamily="@font/blackhansans_regular"
+        android:text="코드를 공유하여\n\n방에 입장하세요"/>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight=".05"/>
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginBottom="8dp">
-
+        android:layout_height="0dp"
+        android:layout_weight=".1"
+        android:gravity="center">
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".05"/>
         <EditText
             android:id="@+id/room_edittext"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_weight=".6"
             android:maxLines="1"
+            android:hint="코드를 입력하세요"
+            android:gravity="center"
+            android:textColor="#575757"
+            android:textColorHint="#717171"
             android:imeOptions="actionDone"
             android:inputType="text"/>
-
         <ImageButton
             android:id="@+id/connect_button"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:contentDescription="@string/connect_description"
-            android:background="@android:drawable/sym_action_call" />
-
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".15"
+            android:background="@drawable/connect_phone" />
         <ImageButton
             android:id="@+id/add_favorite_button"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:contentDescription="@string/add_favorite_description"
-            android:background="@android:drawable/ic_input_add" />
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".15"
+            android:background="@drawable/plus1" />
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".05"/>
     </LinearLayout>
-
     <TextView
         android:id="@+id/room_listview_description"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginTop="8dp"
+        android:layout_height="0dp"
+        android:layout_weight=".05"
         android:lines="1"
         android:maxLines="1"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/favorites"
         android:gravity="center_vertical"/>
-
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight=".35">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="1">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".5"
+                android:layout_margin="20dp"
+                android:padding="10dp"
+                android:weightSum="1"
+                android:background="@drawable/buttonshape8">
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".1"/>
 
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".15"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/friends2"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight=".55"
+                    android:layout_height="wrap_content"
+                    android:text="gljhan123"
+                    android:fontFamily="@font/blackhansans_regular"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:textColor="#3d65d3"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="26sp"/>
+
+                <ImageView
+                    android:id="@+id/iv_check1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight=".2"
+                    android:background="@drawable/buttonshape8"
+                    android:padding="10dp"
+                    android:src="@drawable/check1" />
+            </LinearLayout> />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".5"
+                android:layout_margin="20dp"
+                android:padding="10dp"
+                android:weightSum="1"
+                android:background="@drawable/buttonshape8">
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".1"/>
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".15"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/friends2"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight=".55"
+                    android:layout_height="wrap_content"
+                    android:text="endeoddl19"
+                    android:fontFamily="@font/blackhansans_regular"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:textColor="#3d65d3"
+                    android:layout_gravity="center_vertical"
+                    android:textSize="26sp"/>
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".2"
+                    android:padding="10dp"
+                    android:src="@drawable/check1"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/buttonshape8" />
+            </LinearLayout> />
+        </LinearLayout>
         <ListView
+            android:visibility="invisible"
             android:id="@+id/room_listview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:drawSelectorOnTop="false" />
 
         <TextView
+            android:visibility="invisible"
             android:id="@android:id/empty"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

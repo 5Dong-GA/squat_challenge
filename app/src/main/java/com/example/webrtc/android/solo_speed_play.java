@@ -139,7 +139,7 @@ public class solo_speed_play extends AppCompatActivity implements Camera.Preview
         long ms = overTime % 1000;
 
         //3분 넘어가면 게임종료
-        if (m >= 1) game_end = true;
+        if (m >= 1 && s > 30) game_end = true;
 
         String recTime = String.format("%d:%02d:%03d", m, s, ms);
 

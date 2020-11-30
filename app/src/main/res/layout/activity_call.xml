@@ -37,18 +37,22 @@
                 android:id="@+id/tv_timer1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
                 android:text="0"
-                android:layout_gravity="end"
+                android:fontFamily="@font/blackhansans_regular"
                 android:textColor="#FFFFFF"
-                android:textSize="36sp" />
+                android:textSize="45sp" />
 
             <TextView
                 android:id="@+id/tv_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="150dp"
+                android:fontFamily="@font/blackhansans_regular"
+                android:layout_gravity="center"
                 android:text="0"
                 android:textColor="#FFFFFF"
-                android:textSize="36sp" />
+                android:textSize="50sp" />
         </FrameLayout>
     </FrameLayout>
 

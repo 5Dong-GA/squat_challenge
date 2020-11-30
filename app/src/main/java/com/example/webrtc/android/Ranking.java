@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -30,6 +31,11 @@ public class Ranking extends AppCompatActivity {
     private int User_num=0;
     private String email;
 
+
+    TextView tv_id;
+    TextView tv_count;
+    TextView tv_rank;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -40,6 +46,14 @@ public class Ranking extends AppCompatActivity {
         final String nickName = intent.getStringExtra("name");        //loginactivity로부터 닉네임 전달받음
         final String photoUrl = intent.getStringExtra("photoUrl");        //loginactivity로부터 프로필사진 Url전달받음
         email = intent.getStringExtra("Email");
+
+
+        //FIND
+        tv_id=findViewById(R.id.tv_id);
+        tv_count=findViewById(R.id.tv_count);
+        tv_rank=findViewById(R.id.tv_rank);
+
+        tv_id.setText(email);
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView); // 아디 연결
         recyclerView.setHasFixedSize(true); // 리사이클러뷰 기존성능 강화
@@ -74,7 +88,35 @@ public class Ranking extends AppCompatActivity {
 
             }
         });
+
+
         adapter = new Ranking_CustomAdapter(arrayList, this);
         recyclerView.setAdapter(adapter); // 리사이클러뷰에 어댑터 연결
+
+
+        //자기정보 가져오기
+        DatabaseReference tmp = DB.child(email);
+        tmp.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot datasnapshot : snapshot.getChildren()) { // 반복문으로 데이터 List를 추출해냄
+                    String key = datasnapshot.getKey();
+                    if(key.equals("rank_num")){
+                        String tmp_s = String.valueOf(datasnapshot.getValue());
+                        tv_rank.setText(tmp_s);
+                    }
+                    if(key.equals("total_count")){
+                        long tmp_s =  Long.parseLong( String.valueOf(datasnapshot.getValue()));
+                        tmp_s *=-1;
+                        tv_count.setText(String.valueOf(tmp_s));
+                    }
+
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }

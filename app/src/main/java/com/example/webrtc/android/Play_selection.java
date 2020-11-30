@@ -40,6 +40,8 @@ public class Play_selection extends AppCompatActivity {
         to_team.setOnClickListener(view -> {
             Intent intent14 = new Intent(getApplicationContext(), ConnectActivity.class);
             intent14.putExtra("Email" , email);
+            intent14.putExtra("name" , name);
+            intent14.putExtra("photoUrl" , photoUrl);
             startActivity(intent14);
         });
     }

@@ -30,26 +30,23 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.Message;
-import android.os.SystemClock;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.WindowManager.LayoutParams;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
-import android.os.CountDownTimer;
-import java.io.ByteArrayOutputStream;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.lang.RuntimeException;
@@ -181,6 +178,12 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
     private boolean game_start = false;
     private CountDownTimer countDownTimer;
     public TextView tv_timer1;
+    DatabaseReference DB;
+
+    String email="";
+    String name="";
+    String photoUrl="";
+    public int op_count=0;
 
     //handler (카운터)
     Handler handler = new Handler() {
@@ -204,8 +207,7 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
 
     //카운트를 위해
     public void countDownTimer() {
-        System.out.println("COUNTDOWNTIMER!!!!!!!!!!!!!!!!!!!!!!");
-        countDownTimer = new CountDownTimer(5000, 1000) {
+        countDownTimer = new CountDownTimer(61000, 1000) {
             @Override
             public void onTick(long l) {
                 //0초면 토스트 메세지 띄운다
@@ -216,7 +218,18 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
 
             @Override
             public void onFinish() {
+                Intent intent = new Intent(getApplicationContext(), VS_Result.class);
+                intent.putExtra("email", email);
+                intent.putExtra("name", name);
+                intent.putExtra("photoUrl", photoUrl);
+                intent.putExtra("my_count" , String.valueOf(count));
+                //count저장
+                DB = FirebaseDatabase.getInstance().getReference("users/" +email+"/now_count");
+                DB.setValue(count);
 
+                startActivity(intent);
+
+                disconnect();
             }
         };
     }
@@ -286,6 +299,8 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
                 return;
             }
 
+            target.onFrame(frame);
+
             frame.getBuffer().toI420().getDataY();
             ByteBuffer y = frame.getBuffer().toI420().getDataY();
             ByteBuffer u = frame.getBuffer().toI420().getDataY();
@@ -327,7 +342,7 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
                 handler.sendEmptyMessage(1);
             }
 
-            target.onFrame(frame);
+
         }
 
         synchronized public void setTarget(VideoSink target) {
@@ -450,6 +465,10 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
         remoteSinks.add(remoteProxyRenderer);
 
         final Intent intent = getIntent();
+        email = intent.getStringExtra("Email");
+        name = intent.getStringExtra("name");
+        photoUrl = intent.getStringExtra("photoUrl");
+
         final EglBase eglBase = EglBase.create();
 
         // Create video renderers.
@@ -744,6 +763,7 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
     @Override
     public void onCallHangUp() {
         disconnect();
+
     }
 
     @Override
@@ -879,6 +899,8 @@ public class CallActivity extends Activity implements AppRTCClient.SignalingEven
         } else {
             setResult(RESULT_CANCELED);
         }
+
+
         finish();
     }
 
