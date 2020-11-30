@@ -424,10 +424,24 @@
                         android:layout_height="match_parent"
                         android:layout_weight=".5"
                         android:src="@drawable/mypage_ach"/>
-                    <ImageView
+                    <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight=".2"/>
+                        android:layout_weight=".2"
+                        android:orientation="vertical"
+                        android:weightSum="1">
+                        <ImageView
+                            android:id="@+id/backto_main"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight=".5"
+                            android:padding="10dp"
+                            android:src="@drawable/back2"/>
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight=".5"/>
+                    </LinearLayout>
                 </LinearLayout>
                 <ImageView
                     android:layout_width="match_parent"

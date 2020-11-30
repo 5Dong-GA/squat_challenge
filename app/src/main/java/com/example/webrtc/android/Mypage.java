@@ -138,6 +138,14 @@ public class Mypage extends AppCompatActivity {
             rec4.setText(playnum);
         });
 
+        ImageView backto_main = findViewById(R.id.backto_main);
+        backto_main.setOnClickListener(view -> {
+            Intent intent1 = new Intent(getApplicationContext(), Main.class);
+            intent1.putExtra("name", nickName);
+            intent1.putExtra("photoUrl", photoUrl);
+            intent1.putExtra("Email", email);
+            startActivity(intent1);
+        });
     }
 
     public void select_myach(Button button){ // 업적 눌렀을때 눌린 버튼만 강조 및 내 업적으로 설정

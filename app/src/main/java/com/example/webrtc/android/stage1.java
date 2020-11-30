@@ -22,6 +22,7 @@ public class stage1 extends AppCompatActivity {
 
     DatabaseReference DB;
 
+    String email="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,14 +30,34 @@ public class stage1 extends AppCompatActivity {
 
         Intent intent = getIntent();
         // 들어올때 플레이하러 들어온건지 아님 플레이 끝나고 결과창에서 온건지 판단
+        email = intent.getStringExtra("Email");
         final String isentering = intent.getStringExtra("Enter");
         final String result = intent.getStringExtra("Result");
         final String stage = intent.getStringExtra("Stage");
 
+
         // 결과창에서 온거면 몇 스테이지 깬건지 받아서 상태 변경
-        if (isentering.equals("exit")){
-            stage_clear(result, stage);
-        }
+//        DB = FirebaseDatabase.getInstance().getReference("users");
+//        if (isentering.equals("exit")){
+//            int current_stage = Integer.parseInt(stage); // 깬 스테이지 int 변환
+//            if (result.equals("clear")){
+//                DatabaseReference mystage_DB = DB.child(email).child("stage_num");
+//                mystage_DB.addListenerForSingleValueEvent(new ValueEventListener()   {
+//                    @Override
+//                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                        long ranked_stage; // DB에 있는 최고 스테이지
+//                        ranked_stage = (long) dataSnapshot.getValue();
+//                        if(ranked_stage<current_stage){
+//                            DB.setValue(stage); // DB에 있는거 보다 높으면 최신화
+//                        }
+//                    }
+//                    @Override
+//                    public void onCancelled(@NonNull DatabaseError error) {
+//
+//                    }
+//                });
+//            }
+//        }
 
         ImageView upto_stage2 = findViewById(R.id.upto_stage2); // 화살표로 페이지 이동
         upto_stage2.setOnClickListener(view -> {
@@ -52,13 +73,15 @@ public class stage1 extends AppCompatActivity {
         });
 
         TextView stage2 = findViewById(R.id.stage2);
-        stage1.setOnClickListener(view -> {
-            Intent intent13 = new Intent(getApplicationContext(), ConnectActivity.class);
+        stage2.setOnClickListener(view -> {
+            Intent intent13 = new Intent(getApplicationContext(), Result.class);
+            intent13.putExtra("Where" , "stage_fst_pg");
+            intent13.putExtra("Email",email);
             startActivity(intent13);
         });
 
         TextView stage3 = findViewById(R.id.stage3);
-        stage1.setOnClickListener(view -> {
+        stage3.setOnClickListener(view -> {
             Intent intent13 = new Intent(getApplicationContext(), ConnectActivity.class);
             startActivity(intent13);
         });
@@ -71,25 +94,7 @@ public class stage1 extends AppCompatActivity {
         });
     }
 
-    public void stage_clear(String result, String stage){ // 깼을때 해당 스테이지 DB에 넣어주기
-        int current_stage = Integer.parseInt(stage);
-        if (result.equals("clear")){
-            DB = FirebaseDatabase.getInstance().getReference("users"+"/stage_num");
-            DB.addListenerForSingleValueEvent(new ValueEventListener()   {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    int ranked_stage;
-                    DataSnapshot snapshot = dataSnapshot;
-                    ranked_stage = (int)snapshot.getValue();
-                    if(ranked_stage<current_stage){
-                        DB.setValue(stage);
-                    }
-                }
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
+    public void stage_cleared(String result, String stage){
 
-                }
-            });
-        }
     }
 }
