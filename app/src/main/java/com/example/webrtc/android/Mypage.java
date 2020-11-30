@@ -101,7 +101,7 @@ public class Mypage extends AppCompatActivity {
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     long c = (long) snapshot.getValue();
                     String cnt = c + "개";
-                    rec1.setText(cnt);
+                    rec1.setText("-"+cnt);
                 }
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {

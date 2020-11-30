@@ -19,7 +19,7 @@ public class User {
         this.team_name = "";
         this.state = "on";
         this.stage_num = 0;
-        this.achievement = "스쿼트 꿈나무";
+        this.achievement = "스 쿼 트 꿈 나 무";
         this.rank_num = 0;
     }
 }

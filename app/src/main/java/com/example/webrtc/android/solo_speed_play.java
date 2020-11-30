@@ -48,11 +48,14 @@ public class solo_speed_play extends AppCompatActivity implements Camera.Preview
     private long start_time, now_time, overTime;
     private boolean game_end = false;
     private boolean game_start = false;
+    private boolean clear_check = false;
 
     //DB접근을 위해
     DatabaseReference DB_speed;
     DatabaseReference DB_total;
     String email = "";
+    String name = "";
+    String photoUrl = "";
 
     //카메라를 위해
     private static CameraPreview surfaceView;
@@ -69,6 +72,7 @@ public class solo_speed_play extends AppCompatActivity implements Camera.Preview
     public int index = 0;
     public boolean up = true;
     public boolean down = false;
+    String where = "solo";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +82,8 @@ public class solo_speed_play extends AppCompatActivity implements Camera.Preview
         //이메일을 알고있어야 db연동
         Intent intent = getIntent();
         email = intent.getStringExtra("Email");        //구글이메일
+        name = intent.getStringExtra("name");        //구글이메일
+        photoUrl = intent.getStringExtra("photoUrl");        //구글이메일
 
         // 카메라 프리뷰를  전체화면으로 보여주기 위해 셋팅한다.
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -133,7 +139,7 @@ public class solo_speed_play extends AppCompatActivity implements Camera.Preview
         long ms = overTime % 1000;
 
         //3분 넘어가면 게임종료
-        if (m >= 3) game_end = true;
+        if (m >= 1) game_end = true;
 
         String recTime = String.format("%d:%02d:%03d", m, s, ms);
 
@@ -173,7 +179,10 @@ public class solo_speed_play extends AppCompatActivity implements Camera.Preview
                         tv_count.setText(Integer.toString(count));
 
                         //10개 채웠으면 game_end!
-                        if (count >= 3) game_end = true;
+                        if (count >= 20) {
+                            game_end = true;
+                            clear_check = true;
+                        }
                     }
                 }
                 //down
@@ -233,6 +242,18 @@ public class solo_speed_play extends AppCompatActivity implements Camera.Preview
             updateRecord();                 //db의 total_count 와 speed_time update
             Toast.makeText(getApplicationContext(), "game end!", Toast.LENGTH_SHORT).show();
             surfaceView.surfaceDestroyed(holder);       //preview 종료
+            //추가중
+            Intent intent = new Intent(getApplicationContext(), Result.class);
+            intent.putExtra("Time" , String.valueOf(overTime));
+            intent.putExtra("Count",String.valueOf(count));
+            intent.putExtra("Where", where);
+            intent.putExtra("Result" , String.valueOf(clear_check));
+
+            intent.putExtra("Email", email);
+            intent.putExtra("name" , name);
+            intent.putExtra("photoUrl" , photoUrl);
+
+            startActivity(intent);
             solo_speed_play.this.finish();      //액티비티 종료
         }
         //게임 끝이 아니고 게임이 시작됐다면(게임중이라면)

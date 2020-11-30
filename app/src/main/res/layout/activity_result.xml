@@ -44,11 +44,10 @@
                         android:layout_height="match_parent"
                         android:layout_weight=".33"/>
                     <ImageView
-                        android:id="@+id/game_result"
+                        android:id="@+id/iv_result"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight=".34"
-                        android:src="@drawable/clear1"/>
+                        android:layout_weight=".34" />
                     <ImageView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
@@ -65,15 +64,17 @@
                         android:layout_height="match_parent"
                         android:layout_weight=".45"
                         android:background="@drawable/result_time"/>
+
                     <TextView
+                        android:id="@+id/tv_time"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight=".55"
+                        android:fontFamily="@font/blackhansans_regular"
+                        android:gravity="center"
                         android:text="12.12.12"
                         android:textColor="#575757"
-                        android:gravity="center"
-                        android:fontFamily="@font/blackhansans_regular"
-                        android:textSize="24sp"/>
+                        android:textSize="24sp" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -86,15 +87,17 @@
                         android:layout_height="match_parent"
                         android:layout_weight=".5"
                         android:background="@drawable/result_count"/>
+
                     <TextView
+                        android:id="@+id/tv_count"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight=".5"
-                        android:text="20"
                         android:fontFamily="@font/blackhansans_regular"
-                        android:textSize="26sp"
+                        android:gravity="center"
+                        android:text="20"
                         android:textColor="#575757"
-                        android:gravity="center"/>
+                        android:textSize="26sp" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"

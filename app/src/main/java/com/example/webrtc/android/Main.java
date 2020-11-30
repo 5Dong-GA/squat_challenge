@@ -63,7 +63,6 @@ public class Main extends AppCompatActivity {
         final String photoUrl = intent.getStringExtra("photoUrl");        //loginactivity로부터 프로필사진 Url전달받음
         email = intent.getStringExtra("Email");        //구글이메일
 
-
         Main.quest q = new Main.quest("", 0, true);
         q.setTodayQuest();
 
@@ -102,7 +101,6 @@ public class Main extends AppCompatActivity {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) { // 반복문으로 데이터 List를 추출해냄
                     String tmp_email = snapshot.getKey();
                     if(email.equals(tmp_email)){
-                        System.out.println(rank_index+"!!!!!!!!!!!!!!!!!!!");
                         myrank.setText(String.valueOf(rank_index));
                         myrank_DB.child(email).child("rank_num").setValue(rank_index);
                         break;
@@ -195,6 +193,8 @@ public class Main extends AppCompatActivity {
         play.setOnClickListener(view -> {
             Intent intent14 = new Intent(getApplicationContext(), Play_selection.class);
             intent14.putExtra("Email", email);       //우선 id만 넘겨준다 가정
+            intent14.putExtra("name", nickName);       //우선 id만 넘겨준다 가정
+            intent14.putExtra("photoUrl", photoUrl);       //우선 id만 넘겨준다 가정
             startActivity(intent14);
         });
     }

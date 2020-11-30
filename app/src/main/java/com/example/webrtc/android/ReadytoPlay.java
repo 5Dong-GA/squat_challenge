@@ -31,6 +31,8 @@ public class ReadytoPlay extends AppCompatActivity {
     private static Camera mCamera;
     private int RESULT_PERMISSIONS = 100;
     String email="";
+    String name="";
+    String photoUrl="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +44,8 @@ public class ReadytoPlay extends AppCompatActivity {
 
         Intent intent = getIntent();
         email = intent.getStringExtra("Email");
+        name = intent.getStringExtra("name");
+        photoUrl = intent.getStringExtra("photoUrl");
 
         TextView count1, count2, count3, count4, count5;
 
@@ -64,7 +68,11 @@ public class ReadytoPlay extends AppCompatActivity {
         new Handler().postDelayed(() -> {
             Intent intent1 = new Intent(ReadytoPlay.this, solo_speed_play.class);
             intent1.putExtra("Email" , email);
+            intent1.putExtra("name" , name);
+            intent1.putExtra("photoUrl" , photoUrl);
+
             startActivity(intent1);
+            finish();
 
         }, SPLASH_SCREEN);
     }

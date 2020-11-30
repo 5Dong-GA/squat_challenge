@@ -16,11 +16,15 @@ public class Play_selection extends AppCompatActivity {
 
         Intent intent = getIntent();
         String email = intent.getStringExtra("Email");
+        String name = intent.getStringExtra("name");
+        String photoUrl = intent.getStringExtra("photoUrl");
 
         TextView to_speed = findViewById(R.id.to_speed);
         to_speed.setOnClickListener(view -> {
             Intent intent13 = new Intent(getApplicationContext(), ReadytoPlay.class);
             intent13.putExtra("Email" , email);
+            intent13.putExtra("name" , name);
+            intent13.putExtra("photoUrl" , photoUrl);
             startActivity(intent13);
         });
 
