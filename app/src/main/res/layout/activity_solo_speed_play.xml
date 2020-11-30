@@ -30,9 +30,11 @@
                     android:layout_weight=".3"
                     android:layout_marginTop="32dp"
                     android:layout_gravity="center"
-                    android:text="TextView"
+                    android:text="0:00:000"
                     android:fontFamily="@font/kanit_black"
                     android:textColor="#000000"
+                    android:gravity="center"
+                    android:background="@drawable/solo_timer"
                     android:textSize="30sp" />
                 <TextView
                     android:id="@+id/tv_count"
@@ -41,15 +43,16 @@
                     android:layout_marginTop="32dp"
                     android:layout_gravity="center"
                     android:fontFamily="@font/kanit_black"
-                    android:text="TextView"
-                    android:textSize="44sp"
-                    android:layout_weight=".45"
-                    android:textStyle="bold" />
+                    android:text="0"
+                    android:textColor="#338033"
+                    android:textSize="60sp"
+                    android:gravity="center"
+                    android:layout_weight=".5" />
                 <TextView
                     android:id="@+id/tv_result"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
-                    android:layout_weight=".25"
+                    android:layout_weight=".2"
                     android:layout_marginStart="8dp"
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="32dp"
@@ -58,7 +61,7 @@
                     android:gravity="center"
                     android:textStyle="bold"
                     android:text="TextView"
-                    android:visibility="visible"
+                    android:visibility="invisible"
                     android:textSize="34sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

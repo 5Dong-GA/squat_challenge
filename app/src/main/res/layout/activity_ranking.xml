@@ -8,30 +8,130 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="#FFFFFF"
+        android:background="#3d65d3"
         android:weightSum="1">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_weight=".1"
+            android:orientation="horizontal"
+            android:weightSum="1">
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".25"
+                android:background="@drawable/rank4"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".5"
+                android:text="RANKING"
+                android:textColor="#FFFFFF"
+                android:gravity="center"
+                android:fontFamily="@font/blackhansans_regular"
+                android:textSize="30sp"/>
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".25"
+                android:background="@drawable/rank4"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_weight=".2"
-            android:background="#3d65d3"
+            android:background="@drawable/buttonshape8"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:weightSum="1">
+            <TextView
+                android:id="@+id/tv_id"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".5"
+                android:gravity="center"
+                android:padding="20dp"
+                android:text="endeoddl19"
+                android:textColor="#00a8f3"
+                android:textSize="22sp"
+                android:fontFamily="@font/blackhansans_regular"/>
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".05"/>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".45"
+                android:weightSum="1"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight=".5"
+                    android:weightSum="1"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".5"
+                        android:background="@drawable/rank3"/>
+                    <TextView
+                        android:id="@+id/tv_rank"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".5"
+                        android:gravity="center"
+                        android:text="2"
+                        android:textColor="#00a8f3"
+                        android:textSize="32sp"
+                        android:fontFamily="@font/blackhansans_regular"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight=".5"
+                    android:weightSum="1"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".5"
+                        android:background="@drawable/rank5"/>
+                    <TextView
+                        android:id="@id/tv_count"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight=".5"
+                        android:gravity="center"
+                        android:text="13"
+                        android:textColor="#00a8f3"
+                        android:textSize="32sp"
+                        android:fontFamily="@font/blackhansans_regular"/>
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".1"
+            android:background="@drawable/ranking_anne"
             android:orientation="horizontal"
             android:padding="10dp"
             android:weightSum="1">
 
             <TextView
-                android:id="@+id/tv_rank"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight=".1"
-                android:gravity="center_vertical|center"
+                android:gravity="center"
                 android:text="순위"
+                android:fontFamily="@font/blackhansans_regular"
                 android:textColor="#FFFFFF"
-                android:textSize="24sp"
-                android:fontFamily="@font/blackhansans_regular"/>
+                android:textSize="16sp" />
 
             <ImageView
-                android:id="@+id/iv_profile"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight=".2"
@@ -45,35 +145,34 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/tv_id"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight=".7"
                     android:gravity="center_vertical"
-                    android:padding="20dp"
+                    android:paddingStart="10dp"
                     android:text="아이디"
                     android:textColor="#FFFFFF"
-                    android:textSize="24sp"
+                    android:textSize="16sp"
                     android:fontFamily="@font/blackhansans_regular"/>
 
                 <TextView
-                    android:id="@+id/tv_record"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight=".3"
                     android:gravity="center_vertical|right"
-                    android:padding="20dp"
+                    android:paddingEnd="10dp"
                     android:text="기록"
                     android:textColor="#FFFFFF"
-                    android:textSize="24sp"
-                    android:fontFamily="@font/blackhansans_regular"/>
+                    android:fontFamily="@font/blackhansans_regular"
+                    android:textSize="16sp" />
+
             </LinearLayout>
         </LinearLayout>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight=".8">
+            android:layout_weight=".6">
         </androidx.recyclerview.widget.RecyclerView>
     </LinearLayout>
 
