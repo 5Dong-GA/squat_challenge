@@ -21,6 +21,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 
+import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -37,9 +38,16 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -79,6 +87,9 @@ public class ConnectActivity extends AppCompatActivity {
     String email = "";
     String name = "";
     String photoUrl = "";
+    ImageView iv_check1;
+    TextView tv_friend1;
+    DatabaseReference DB;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -104,7 +115,6 @@ public class ConnectActivity extends AppCompatActivity {
         keyprefRoomList = getString(org.appspot.apprtc.R.string.pref_room_list_key);
 
         setContentView(R.layout.activity_connect);
-
         roomEditText = findViewById(R.id.room_edittext);
         roomEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -116,6 +126,39 @@ public class ConnectActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+        //클릭시
+        iv_check1 = findViewById(R.id.iv_check1);
+        tv_friend1 = findViewById(R.id.tv_friend1);
+        iv_check1.setOnClickListener(view -> {
+            //랜덤 방번호 생성
+            String tmp ="";
+            for(int i=0;i<6;i++){
+                Random rd = new Random();
+                tmp+=String.valueOf(rd.nextInt(10));
+            }
+            roomEditText.setText(tmp);
+
+            //나의 DB에 op_id에 친구 email settting
+            DB = FirebaseDatabase.getInstance().getReference("users/"+email+"/op_id");
+            DB.setValue(tv_friend1.getText());
+
+            //상대방 op_id에 내 email넣는다
+            DB.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    String op_id = String.valueOf(snapshot.getValue());
+                    DatabaseReference tmp = FirebaseDatabase.getInstance().getReference("users/"+op_id+"/op_id");
+                    tmp.setValue(email);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        });
+
         roomEditText.requestFocus();
 
         roomListView = findViewById(R.id.room_listview);
