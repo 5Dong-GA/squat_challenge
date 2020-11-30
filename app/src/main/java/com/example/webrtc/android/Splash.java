@@ -36,6 +36,7 @@ public class Splash extends AppCompatActivity {
         new Handler().postDelayed(() -> { // splashscreen 값만큼 후에 엑티비티 전환
             Intent intent = new Intent(Splash.this, LoginActivity.class);
             startActivity(intent);
+            finish();
         },SPLASH_SCREEN);
     }
 
