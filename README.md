@@ -10,6 +10,10 @@
 - 앉은 상태(0) vs 서 있는 상태(1)
 - 1 -> 0 -> 1 : Count 1개
 
+# tflite converter
+- Binary Image Classification model converting
+- Keras로 학습시켜 .h5 확장자를 가지고 있는 모델에서 Android에서 구동시키기 위해서 tflite로 converting함
+
 # FireBase
 - Android에서 작동할 때 사용자들 정보 관리하는 Backend
 - RealTime DataBase 사용하여 실시간으로 정보 갱신해야하는 특성 살림
